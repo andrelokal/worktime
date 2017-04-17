@@ -137,14 +137,14 @@ date_default_timezone_set('America/Sao_Paulo');
                if ($totalDaysOfWeek == 0) {
                    p = 100;
                    $totalDaysOfWeek = 1;
-                   var $divide = 100;
+                   var $multiply = 0;
                }else{
-                   var $divide = 1;
+                   var $multiply = 1;
                }
                
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
                     label: 'cansa&ccedil;o',
-                    value: Math.round(p / $divide),
+                    value: Math.round(p * $multiply),
                     unit: '%',
                     min: 0,
                     max: 100,
