@@ -8,21 +8,21 @@ date_default_timezone_set('America/Sao_Paulo');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Progressbar - Default functionality</title>
+  <title>Idleness Systems</title>
   <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+  <link href="bootstrap/css/jquery.dynameter.css" rel="stylesheet" type="text/css" />
   <script src="bootstrap/js/bootstrap.js"></script>
+  <script src="bootstrap/js/jquery.dynameter.js"></script>
 
   <script>
-  $( function() {
-    
-    $( "#progressbar" ).progressbar({
-      value: 0    
-    });    
-    
+  $( function() {    
+    $("#progressbar").progressbar({value: 0});     
+    var $gaugeCansaco;
+    var $gaugeMotivacao;
   });
   </script>
 
@@ -32,7 +32,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
             var HH = 17;
             var MI = 48;
-            var SS = 00;
+            var SS = 00;           
 
             function atualizaContador() {
 
@@ -45,7 +45,7 @@ date_default_timezone_set('America/Sao_Paulo');
                 var todayy= hoje.getFullYear();
 
                 var futuro = new Date(todayy,todaym+1,todayd,HH,MI,SS);
-
+                
                 var ss = parseInt((futuro - hoje) / 1000);
 
                 var mm = parseInt(ss / 60);
@@ -116,8 +116,32 @@ date_default_timezone_set('America/Sao_Paulo');
                if(p > 100){
                    p = 100;
                }
+               
+               $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
+                    label: 'cansa&ccedil;o',
+                    value: Math.round(p),
+                    unit: '%',
+                    min: 0,
+                    max: 100,
+                    regions: {
+                        75: 'warn',
+                        90: 'error'
+                    }
+                });
+                $gaugeMotivacao = $('#payloadGaugeMotivacao').dynameter({
+                    label: 'motiva&ccedil;&atilde;o',
+                    value: Math.round(p / 5),
+                    unit: '% fim de semana',
+                    min: 0,
+                    max: 100,
+                    regions: {
+                        0: 'error',
+                        50: 'warn',
+                        90: 'normal'
+                    }
+                });
 
-               $('.progress-bar').removeClass('progress-bar-success')
+               $('.progress-bar').removeClass('progress-bar-success');
                $('.progress-bar').removeClass('progress-bar-info');
                $('.progress-bar').removeClass('progress-bar-warning');
                $('.progress-bar').removeClass('progress-bar-danger');
@@ -212,12 +236,10 @@ date_default_timezone_set('America/Sao_Paulo');
                 </div>
               </li>
               <li class="list-group-item porc"></li>
-            </ul>
-            
+              <li class="list-group-item meter"><div id="payloadGaugeCansaco" style="float:left;margin-right:20px;margin-left:10px"></div><div id="payloadGaugeMotivacao"></div></li>
+            </ul>            
           </div>
-        </div>
-
-
+        </div>                
     </body>
 
 </html>
