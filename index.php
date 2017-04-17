@@ -146,9 +146,9 @@ date_default_timezone_set('America/Sao_Paulo');
                }
                
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
-                    label: 'cansa&ccedil;o',
+                    label: 'di&aacute;rio',
                     value: Math.round(p * $multiply),
-                    unit: '%',
+                    unit: '% cansa&ccedil;o',
                     min: 0,
                     max: 100,
                     regions: {
@@ -158,9 +158,9 @@ date_default_timezone_set('America/Sao_Paulo');
                 });
                 
                 $gaugeMotivacao = $('#payloadGaugeMotivacao').dynameter({
-                    label: 'motiva&ccedil;&atilde;o',
+                    label: 'fim de semana',
                     value: Math.round(p / $totalDaysOfWeek),
-                    unit: '% fim de semana',
+                    unit: '% motiva&ccedil;&atilde;o',
                     min: 0,
                     max: 100,
                     regions: {
