@@ -32,7 +32,7 @@ date_default_timezone_set('America/Sao_Paulo');
         <script type="text/javascript">
 
             var HH = 17;
-            var MI = 45;
+            var MI = 48;
             var SS = 00;           
 
             function atualizaContador() {
@@ -130,7 +130,7 @@ date_default_timezone_set('America/Sao_Paulo');
                
                var a2 = ((h * 60)-(17*60)+540) + m ;
                var b1 = 100;
-               var a1 = 585;
+               var a1 = 588;
                var p = (b1*a2)/a1;
                
                if(p > 100){
