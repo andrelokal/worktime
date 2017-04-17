@@ -87,6 +87,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
                 if (dd+hh+mm+ss > 0) {
 
+                    if ($totalDaysOfWeek == 0) {
+                        faltam = 'Falta nada!!! Fim de semana caralho!!!';
+                    }                    
                     $('#contador').html(faltam);
                     setTimeout(atualizaContador,1000);
                     setTimeout(Horario,1000);
