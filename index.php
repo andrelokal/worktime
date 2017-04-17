@@ -22,7 +22,8 @@ date_default_timezone_set('America/Sao_Paulo');
   $( function() {    
     $("#progressbar").progressbar({value: 0});     
     var $gaugeCansaco;
-    var $gaugeMotivacao;
+    var $gaugeMotivacao;  
+    var $totalDaysOfWeek;
   });
   </script>
 
@@ -45,6 +46,22 @@ date_default_timezone_set('America/Sao_Paulo');
                 var todayy= hoje.getFullYear();
 
                 var futuro = new Date(todayy,todaym+1,todayd,HH,MI,SS);
+                
+                var $week = new Date(todayy,todaym,todayd,HH,MI,SS);                
+                
+                var $day = $week.getDay();
+                
+                var $weekday = new Array(6);
+                
+                $weekday[0]=0;
+                $weekday[1]=5;
+                $weekday[2]=4;
+                $weekday[3]=3;
+                $weekday[4]=2;
+                $weekday[5]=1;
+                $weekday[6]=0;
+                                
+                $totalDaysOfWeek = $weekday[$day];                
                 
                 var ss = parseInt((futuro - hoje) / 1000);
 
@@ -117,9 +134,17 @@ date_default_timezone_set('America/Sao_Paulo');
                    p = 100;
                }
                
+               if ($totalDaysOfWeek == 0) {
+                   p = 100;
+                   $totalDaysOfWeek = 1;
+                   var $divide = 100;
+               }else{
+                   var $divide = 1;
+               }
+               
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
                     label: 'cansa&ccedil;o',
-                    value: Math.round(p),
+                    value: Math.round(p / $divide),
                     unit: '%',
                     min: 0,
                     max: 100,
@@ -128,9 +153,10 @@ date_default_timezone_set('America/Sao_Paulo');
                         90: 'error'
                     }
                 });
+                
                 $gaugeMotivacao = $('#payloadGaugeMotivacao').dynameter({
                     label: 'motiva&ccedil;&atilde;o',
-                    value: Math.round(p / 5),
+                    value: Math.round(p / $totalDaysOfWeek),
                     unit: '% fim de semana',
                     min: 0,
                     max: 100,
