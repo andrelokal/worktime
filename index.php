@@ -32,7 +32,7 @@ date_default_timezone_set('America/Sao_Paulo');
         <script type="text/javascript">
 
             var HH = 17;
-            var MI = 48;
+            var MI = 45;
             var SS = 00;           
 
             function atualizaContador() {
@@ -130,7 +130,7 @@ date_default_timezone_set('America/Sao_Paulo');
                
                var a2 = ((h * 60)-(17*60)+540) + m ;
                var b1 = 100;
-               var a1 = 588;
+               var a1 = 585;
                var p = (b1*a2)/a1;
                
                if(p > 100){
@@ -253,7 +253,7 @@ date_default_timezone_set('America/Sao_Paulo');
           <div class="panel-body">
 
             <ul class="list-group">
-              <li class="list-group-item">Fim do expediente: <b>17:48</b> </li>
+              <li class="list-group-item">Fim do expediente: <b><strike>17:48</strike></b> <b>17:45</b> </li>
               <li class="list-group-item">Hora atual: <span id="Clock">00:00:00</span></li>
               <li class="list-group-item">Faltam: <span id="contador"></span></li>
               <li class="list-group-item">
