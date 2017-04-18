@@ -31,7 +31,8 @@ date_default_timezone_set('America/Sao_Paulo');
 
     config =  { 
                 entrada:"08:00",
-                saida:"17:48"
+                saida:"17:48",
+                almoco: "11:45"
               }
   } 
 
@@ -47,6 +48,10 @@ date_default_timezone_set('America/Sao_Paulo');
   var HH;
   var MI;
   var SS;
+  
+  var HA;
+  var MA;
+  var AT;
 
   $( function() {
    
@@ -54,7 +59,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
     $("#progressbar").progressbar({value: 0});
 
-    $('#saida,#entrada').mask( '99:99' );
+    $('#saida,#entrada,#almoco').mask( '99:99' );
 
     $('#config').click(function(){
       $('#myModal').modal()
@@ -63,6 +68,7 @@ date_default_timezone_set('America/Sao_Paulo');
     $('#save').click(function(){
       config.entrada = $('#entrada').val();
       config.saida = $('#saida').val();
+      config.almoco = $('#almoco').val();
       localStorage.setItem('config', JSON.stringify(config) )
       //alert( JSON.stringify(config) )
       $('#myModal').modal('hide')
@@ -86,9 +92,21 @@ date_default_timezone_set('America/Sao_Paulo');
         var m = regex.exec(config.saida);
         HS = Number(m[1]);
         MS = Number(m[2]);
+        $('.end').html(HS + ":" + MS);
       }
       
+      if( config.almoco ){
+        $('#almoco').val(config.almoco)
+        var regex = /([0-9]{2})\:([0-9]{2})/;
+        var m = regex.exec(config.almoco);
+        HA = Number(m[1]);
+        MA = Number(m[2]);
+      }
+      
+      
+      
       MT = (HS-HE)*60+(MS-ME);
+      AT = (HA-HE)*60+(MA-ME);       
 
       HH = HS;
       MI = MS;
@@ -201,7 +219,9 @@ date_default_timezone_set('America/Sao_Paulo');
                var a2 = (h*60+m)-(HE*60+ME);
                var b1 = 100;
                var a1 = MT;
+               var a3 = AT;               
                var p = (b1*a2)/a1;
+               var pa = (b1*a2)/a3;
                
                if(p > 100){
                    p = 100;
@@ -239,6 +259,19 @@ date_default_timezone_set('America/Sao_Paulo');
                         90: 'normal'
                     }
                 });
+                
+                $gaugeAlmoco = $('#payloadGaugeAlmoco').dynameter({
+                    label: 'FOME',
+                    value: Math.trunc(pa),
+                    unit: '%',
+                    min: 0,
+                    max: 100,
+                    regions: {
+                        0: 'normal',
+                        50: 'warn',
+                        80: 'error'
+                    }
+                });
 
                $('.progress-bar').removeClass('progress-bar-success');
                $('.progress-bar').removeClass('progress-bar-info');
@@ -273,8 +306,7 @@ date_default_timezone_set('America/Sao_Paulo');
     </head>
 
     <style type="text/css">
-      .main{
-        width: 500px;
+      .main{        
         margin: 50px;
         margin-left: auto;
         margin-right: auto;
@@ -321,6 +353,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
     <body onload="atualizaContador();Horario()">
 
+    <div class="container">
+     <div class="row">
+        <div class="col-md-12">
         <div class="panel panel-primary main">
           <div class="panel-heading">Contagem regressiva 
             <div class="nav navbar-nav navbar-right" style="margin-right: 5px; margin-top: -10px;"> 
@@ -330,7 +365,7 @@ date_default_timezone_set('America/Sao_Paulo');
           <div class="panel-body">
 
             <ul class="list-group">
-              <li class="list-group-item">Fim do expediente: <b><strike>17:48</strike></b> <b>17:45</b> </li>
+              <li class="list-group-item">Fim do expediente: <b class="end">17:45</b> </li>
               <li class="list-group-item">Hora atual: <span id="Clock">00:00:00</span></li>
               <li class="list-group-item">Faltam: <span id="contador"></span></li>
               <li class="list-group-item">
@@ -342,11 +377,32 @@ date_default_timezone_set('America/Sao_Paulo');
                 </div>
               </li>
               <li class="list-group-item porc"></li>
-              <li class="list-group-item meter"><div id="payloadGaugeCansaco" style="float:left;margin-right:20px;margin-left:10px"></div><div id="payloadGaugeMotivacao"></div></li>
+              <li class="list-group-item meter">
+                       <div class="row">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div id="payloadGaugeCansaco" style="margin: 10 auto;"></div>
+                          </div>  
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div id="payloadGaugeAlmoco" style="margin: 10 auto;"></div>
+                          </div>  
+                        </div>                        
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div id="payloadGaugeMotivacao" style="margin: 10 auto;"></div>
+                          </div>  
+                        </div>  
+                       </div>
+              </li>
             </ul>            
           </div>
        </div>
-
+        </div>
+        </div>
+        </div>
+       
         <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -368,7 +424,13 @@ date_default_timezone_set('America/Sao_Paulo');
                         <label for="hora">Saída</label>
                         <input type="text" class="form-control" id="saida" placeholder="Saída">
                       </div>
-                    </div>  
+                    </div>
+                    <div class="col-xs-3">
+                      <div class="form-group">
+                        <label for="hora">Almoço</label>
+                        <input type="text" class="form-control" id="almoco" placeholder="Almoço">
+                      </div>
+                    </div>                    
                     </div>
                 </p>
               </div>
