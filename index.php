@@ -173,7 +173,7 @@ date_default_timezone_set('America/Sao_Paulo');
                 
                 var faltam = '';
 
-                faltam += hours > 1 ? hours.padStart(2, '0') + ':' : '';
+                faltam += hours > 0 ? hours.padStart(2, '0') + ':' : '';
 
                 faltam += minutes.padStart(2, '0') + ':';
 
