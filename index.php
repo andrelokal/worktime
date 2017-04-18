@@ -241,7 +241,7 @@ date_default_timezone_set('America/Sao_Paulo');
                    var $multiply = 1;
                }
                              
-               var percentEndOfWeek = Math.round(((a2 + ((5 - $totalDaysOfWeek) * a1) * 100) / (a1 * 5)));
+               var percentEndOfWeek = ((a2 + ((5 - $totalDaysOfWeek) * a1) * 100) / (a1 * 5));
                
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
                     label: 'di&aacute;rio',
@@ -309,20 +309,17 @@ date_default_timezone_set('America/Sao_Paulo');
                $('.progress-bar').css('width',p+'%')
            } 
 
-
-        //Google Analiticts
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-97592513-1', 'auto');
-        ga('send', 'pageview');
+        </script>
         
-          
-        function atualizar() {
-            location.reload(true)
-        }
-        window.setInterval("atualizar()",150000);
+        <script>
+            //Google Analiticts
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-97592513-1', 'auto');
+          ga('send', 'pageview');
 
         </script>
 
