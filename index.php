@@ -240,6 +240,8 @@ date_default_timezone_set('America/Sao_Paulo');
                }else{
                    var $multiply = 1;
                }
+                             
+               var percentEndOfWeek = Math.round(((a2 + ((5 - $totalDaysOfWeek) * a1) * 100) / (a1 * 5)));
                
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
                     label: 'di&aacute;rio',
@@ -255,7 +257,7 @@ date_default_timezone_set('America/Sao_Paulo');
                 
                 $gaugeMotivacao = $('#payloadGaugeMotivacao').dynameter({
                     label: 'fim de semana',
-                    value: Math.round(100 / $totalDaysOfWeek),
+                    value: Math.round(percentEndOfWeek),
                     unit: '% motiva&ccedil;&atilde;o p/',
                     min: 0,
                     max: 100,
