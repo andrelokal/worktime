@@ -165,13 +165,19 @@ date_default_timezone_set('America/Sao_Paulo');
 
                 hh = hh - (dd * 24);
 
+                var pad = "0000"
+                
+                var hours = pad.substring(0, pad.length - hh.length) + hh;
+                var minutes = pad.substring(0, pad.length - mm.length) + mm;
+                var seconds = pad.substring(0, pad.length - ss.length) + ss;
+                
                 var faltam = '';
 
-                faltam += (toString(hh).length) ? hh+' hr, ' : '';
+                faltam += hours > 1 ? hours.padStart(2, '0') + ':' : '';
 
-                faltam += (toString(mm).length) ? mm+' min e ' : '';
+                faltam += minutes.padStart(2, '0') + ':';
 
-                faltam += ss+' seg';
+                faltam += seconds.padStart(2, '0');
 
                 if (dd+hh+mm+ss > 0) {
 
@@ -348,6 +354,13 @@ date_default_timezone_set('America/Sao_Paulo');
       body{
         background: #ccc;
       }
+      
+      .restante {
+          font-family: Arial;
+          text-align: center;
+          font-size: 28px;
+          font-weight: bold;
+      }
 
     </style>
 
@@ -367,7 +380,7 @@ date_default_timezone_set('America/Sao_Paulo');
             <ul class="list-group">
               <li class="list-group-item">Fim do expediente: <b class="end">17:45</b> </li>
               <li class="list-group-item">Hora atual: <span id="Clock">00:00:00</span></li>
-              <li class="list-group-item">Faltam: <span id="contador"></span></li>
+              <li class="list-group-item restante">Faltando: <span id="contador"></span> pro final!</li>
               <li class="list-group-item">
 
                 <div class="progress">
