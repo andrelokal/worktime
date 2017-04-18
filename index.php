@@ -17,34 +17,93 @@ date_default_timezone_set('America/Sao_Paulo');
   <link href="bootstrap/css/jquery.dynameter.css" rel="stylesheet" type="text/css" />
   <script src="bootstrap/js/bootstrap.js"></script>
   <script src="bootstrap/js/jquery.dynameter.js"></script>
+  <script src="jquery.mask.js"></script>
+
 
   <script>
-  $( function() {    
-    $("#progressbar").progressbar({value: 0});     
-    var $gaugeCansaco;
-    var $gaugeMotivacao;  
-    var $totalDaysOfWeek;
-    var HE;
-    var ME;
-    var HS;
-    var MS;
-    var MT;
+
+  var config ;
+  if( localStorage.getItem('config') ){
+
+    config = JSON.parse( localStorage.getItem('config') );
+
+  } else {
+
+    config =  { 
+                entrada:"08:00",
+                saida:"17:48"
+              }
+  } 
+
+  var $gaugeCansaco;
+  var $gaugeMotivacao;  
+  var $totalDaysOfWeek;
+  var HE;
+  var ME;
+  var HS;
+  var MS;
+  var MT;  
+
+  var HH;
+  var MI;
+  var SS;
+
+  $( function() {
+   
+   Init()
+
+    $("#progressbar").progressbar({value: 0});
+
+    $('#saida,#entrada').mask( '99:99' );
+
+    $('#config').click(function(){
+      $('#myModal').modal()
+    })
+
+    $('#save').click(function(){
+      config.entrada = $('#entrada').val();
+      config.saida = $('#saida').val();
+      localStorage.setItem('config', JSON.stringify(config) )
+      //alert( JSON.stringify(config) )
+      $('#myModal').modal('hide')
+      Init()
+    })
+    
   });
+
+  function Init(){
+     if( config.entrada ){
+        $('#entrada').val(config.entrada)
+        var regex = /([0-9]{2})\:([0-9]{2})/;
+        var m = regex.exec(config.entrada);
+        HE = Number(m[1]);
+        ME = Number(m[2]);
+      }
+
+      if( config.saida ){
+        $('#saida').val(config.saida)
+        var regex = /([0-9]{2})\:([0-9]{2})/;
+        var m = regex.exec(config.saida);
+        HS = Number(m[1]);
+        MS = Number(m[2]);
+      }
+      
+      MT = (HS-HE)*60+(MS-ME);
+
+      HH = HS;
+      MI = MS;
+      SS = 00; 
+
+      atualizaContador();
+      Horario()
+  }
+
   </script>
+
 
         <title>Contagem regressiva</title>
 
         <script type="text/javascript">
-            
-            HE = 8;
-            ME = 0;
-            HS = 17;
-            MS = 48;
-            MT = (HS-HE)*60+(MS-ME);
-
-            var HH = HS;
-            var MI = MS;
-            var SS = 00;           
 
             function atualizaContador() {
 
@@ -250,6 +309,9 @@ date_default_timezone_set('America/Sao_Paulo');
         background-size: 240px ;
       }
 
+      #config{
+        cursor: pointer;
+      }
 
       body{
         background: #ccc;
@@ -260,7 +322,11 @@ date_default_timezone_set('America/Sao_Paulo');
     <body onload="atualizaContador();Horario()">
 
         <div class="panel panel-primary main">
-          <div class="panel-heading">Contagem regressiva</div>
+          <div class="panel-heading">Contagem regressiva 
+            <div class="nav navbar-nav navbar-right" style="margin-right: 5px; margin-top: -10px;"> 
+              <h4 class="glyphicon glyphicon-cog" id='config'></h4>
+            </div>
+          </div>
           <div class="panel-body">
 
             <ul class="list-group">
@@ -279,7 +345,40 @@ date_default_timezone_set('America/Sao_Paulo');
               <li class="list-group-item meter"><div id="payloadGaugeCansaco" style="float:left;margin-right:20px;margin-left:10px"></div><div id="payloadGaugeMotivacao"></div></li>
             </ul>            
           </div>
-        </div>                
+       </div>
+
+        <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Configurações</h4>
+              </div>
+              <div class="modal-body">
+                <p>
+                    <div class="row">
+                    <div class="col-xs-3">
+                      <div class="form-group">
+                        <label for="hora">Entrada</label>
+                        <input type="text" class="form-control" id="entrada" placeholder="Entrada">
+                      </div>
+                    </div>  
+                    <div class="col-xs-3">
+                      <div class="form-group">
+                        <label for="hora">Saída</label>
+                        <input type="text" class="form-control" id="saida" placeholder="Saída">
+                      </div>
+                    </div>  
+                    </div>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id='save'>Save changes</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </body>
 
 </html>
