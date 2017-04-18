@@ -159,7 +159,7 @@ date_default_timezone_set('America/Sao_Paulo');
                 
                 $gaugeMotivacao = $('#payloadGaugeMotivacao').dynameter({
                     label: 'fim de semana',
-                    value: Math.round(p / $totalDaysOfWeek),
+                    value: Math.round(100 / $totalDaysOfWeek),
                     unit: '% motiva&ccedil;&atilde;o',
                     min: 0,
                     max: 100,
