@@ -241,7 +241,7 @@ date_default_timezone_set('America/Sao_Paulo');
                    var $multiply = 1;
                }
                              
-               var percentEndOfWeek = ((a2 + ((5 - $totalDaysOfWeek) * a1) * 100) / (a1 * 5));
+               var percentEndOfWeek = (100 * (a2 + ((5 - $totalDaysOfWeek) * a1)) / (a1 * 5));
                
                $gaugeCansaco = $('#payloadGaugeCansaco').dynameter({
                     label: 'di&aacute;rio',
