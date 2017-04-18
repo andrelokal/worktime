@@ -24,15 +24,26 @@ date_default_timezone_set('America/Sao_Paulo');
     var $gaugeCansaco;
     var $gaugeMotivacao;  
     var $totalDaysOfWeek;
+    var HE;
+    var ME;
+    var HS;
+    var MS;
+    var MT;
   });
   </script>
 
         <title>Contagem regressiva</title>
 
         <script type="text/javascript">
+            
+            HE = 8;
+            ME = 0;
+            HS = 17;
+            MS = 48;
+            MT = (HS-HE)*60+(MS-ME);
 
-            var HH = 17;
-            var MI = 48;
+            var HH = HS;
+            var MI = MS;
             var SS = 00;           
 
             function atualizaContador() {
@@ -128,9 +139,9 @@ date_default_timezone_set('America/Sao_Paulo');
            
            function pbar(h,m){
                
-               var a2 = ((h * 60)-(17*60)+540) + m ;
+               var a2 = (h*60+m)-(HE*60+ME);
                var b1 = 100;
-               var a1 = 588;
+               var a1 = MT;
                var p = (b1*a2)/a1;
                
                if(p > 100){
