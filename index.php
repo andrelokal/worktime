@@ -238,7 +238,7 @@ date_default_timezone_set('America/Sao_Paulo');
                }
                
                if(pa > 100){
-                   pa = 0;
+                   pa = p-15;    
                }
                
                if ($totalDaysOfWeek == 0) {
