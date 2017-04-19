@@ -80,19 +80,19 @@ function dias_feriados($ano = null)
   var $gaugeMotivacao;  
   var $gaugeFeriado;
   var $totalDaysOfWeek;
-  var HE;
-  var ME;
-  var HS;
-  var MS;
-  var MT;  
+  var HE; //hora entrada
+  var ME; // minutos entrada
+  var HS; // hora saida
+  var MS; // minutos saida
+  var MT; // minutos totais de trabalho  
 
   var HH;
   var MI;
   var SS;
   
-  var HA;
-  var MA;
-  var AT;
+  var HA; //Hora atual
+  var MA; // Minuto Atual
+  var AT; // Minutos totais atual
 
   $( function() {
    
@@ -228,7 +228,10 @@ function dias_feriados($ano = null)
 
                     if ($totalDaysOfWeek == 0) {
                         faltam = 'Falta nada!!! Fim de semana caralho!!!';
-                    }                    
+                    }else if(HA < HE || HA > HS){
+                        faltam = 'Falta nada!!! Nos vemos em breve!!!';   
+                    }
+                    
                     $('#contador').html(faltam);
                     setTimeout(atualizaContador,1000);
                     setTimeout(Horario,1000);
@@ -479,7 +482,7 @@ function dias_feriados($ano = null)
             <ul class="list-group">
               <li class="list-group-item">Fim do expediente: <b class="end">17:45</b> </li>
               <li class="list-group-item">Hora atual: <span id="Clock">00:00:00</span></li>
-              <li class="list-group-item restante">Faltando: <span id="contador"></span> pro final!</li>
+              <li class="list-group-item restante">Faltando: <span id="contador"></span></li>
               <li class="list-group-item">
 
                 <div class="progress">
