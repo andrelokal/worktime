@@ -9,6 +9,20 @@ function geraTimestamp($data)
   return mktime(0, 0, 0, $partes[1], $partes[0], $partes[2]);
 }
 
+function orthodox_eastern($year) { 
+    $a = $year % 4; 
+    $b = $year % 7; 
+    $c = $year % 19; 
+    $d = (19 * $c + 15) % 30; 
+    $e = (2 * $a + 4 * $b - $d + 34) % 7; 
+    $month = floor(($d + $e + 114) / 31); 
+    $day = (($d + $e + 114) % 31) + 1; 
+    
+    $de = mktime(0, 0, 0, $month, $day + 13, $year); 
+    
+    return $de; 
+} 
+
 function dias_feriados($ano = null)
 { 
   if ($ano === null)
@@ -16,7 +30,7 @@ function dias_feriados($ano = null)
     $ano = intval(date('Y'));
   }
  
-  $pascoa     = easter_date($ano); // Limite de 1970 ou após 2037 da easter_date PHP consulta http://www.php.net/manual/pt_BR/function.easter-date.php
+  $pascoa     = orthodox_eastern($ano); // Limite de 1970 ou após 2037 da easter_date PHP consulta http://www.php.net/manual/pt_BR/function.easter-date.php
   $dia_pascoa = date('j', $pascoa);
   $mes_pascoa = date('n', $pascoa);
   $ano_pascoa = date('Y', $pascoa);
