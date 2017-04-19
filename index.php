@@ -1,6 +1,7 @@
 <?php
 ini_set('short_open_tag','1');
 date_default_timezone_set('America/Sao_Paulo');
+error_reporting(E_ALL);
 
 function geraTimestamp($data) 
 {
