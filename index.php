@@ -1,6 +1,46 @@
 <?php
 ini_set('short_open_tag','1');
 date_default_timezone_set('America/Sao_Paulo');
+
+function geraTimestamp($data) 
+{
+  $partes = explode('/', $data);
+  return mktime(0, 0, 0, $partes[1], $partes[0], $partes[2]);
+}
+
+function dias_feriados($ano = null)
+{
+  if ($ano === null)
+  {
+    $ano = intval(date('Y'));
+  }
+ 
+  $pascoa     = easter_date($ano); // Limite de 1970 ou após 2037 da easter_date PHP consulta http://www.php.net/manual/pt_BR/function.easter-date.php
+  $dia_pascoa = date('j', $pascoa);
+  $mes_pascoa = date('n', $pascoa);
+  $ano_pascoa = date('Y', $pascoa);
+ 
+  $feriados = array(
+    // Datas Fixas dos feriados Nacionail Basileiras
+    mktime(0, 0, 0, 1,  1,   $ano), // Confraternização Universal - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 4,  21,  $ano), // Tiradentes - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 5,  1,   $ano), // Dia do Trabalhador - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 9,  7,   $ano), // Dia da Independência - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 10,  12, $ano), // N. S. Aparecida - Lei nº 6802, de 30/06/80
+    mktime(0, 0, 0, 11,  2,  $ano), // Finados - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 11, 15,  $ano), // Proclamação da republica - Lei nº 662, de 06/04/49
+    mktime(0, 0, 0, 12, 25,  $ano), // Natal - Lei nº 662, de 06/04/49
+ 
+    // These days have a date depending on easter
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 48,  $ano_pascoa),//2ºfeira Carnaval
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 47,  $ano_pascoa),//3ºfeura Carnaval	
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 2 ,  $ano_pascoa),//6ºfeira Santa  
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa     ,  $ano_pascoa),//Pascoa
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa + 60,  $ano_pascoa),//Corpus Cirist
+  );
+  sort($feriados);  
+  return $feriados;
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -38,6 +78,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
   var $gaugeCansaco;
   var $gaugeMotivacao;  
+  var $gaugeFeriado;
   var $totalDaysOfWeek;
   var HE;
   var ME;
@@ -297,6 +338,32 @@ date_default_timezone_set('America/Sao_Paulo');
                         80: 'error'
                     }
                 });
+                
+                <?php
+                        $ano_= date("Y"); 
+                        foreach(dias_feriados($ano_) as $a)
+                        {
+                            // Usa a função criada e pega o timestamp das duas datas:
+                            $time_inicial = geraTimestamp(date("d/m/Y"));
+                            $time_final = geraTimestamp(date("d/m/Y", $a));
+                            // Calcula a diferença de segundos entre as duas datas:
+                            $diferenca = $time_final - $time_inicial; // 19522800 segundos
+                            // Calcula a diferença de dias
+                            $dias = (int)floor( $diferenca / (60 * 60 * 24)); // 225 dias
+                            // Exibe uma mensagem de resultado:
+                            if ($dias > 0 && $dias < 6){ ?>
+                                
+                                $gaugeFeriado = $('#payloadGaugeFeriado').dynameter({
+                                    label: 'Feriado',
+                                    value: <?php echo $dias ; ?>,
+                                    unit: 'dias para o',
+                                    min: 5,
+                                    max: 0
+                                });
+                                                                
+                            <?php break; }						 
+                        }
+                ?>
 
                $('.progress-bar').removeClass('progress-bar-success');
                $('.progress-bar').removeClass('progress-bar-info');
@@ -425,21 +492,26 @@ date_default_timezone_set('America/Sao_Paulo');
               <li class="list-group-item porc"></li>
               <li class="list-group-item meter">
                        <div class="row">
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                           <div class="form-group">
                             <div id="payloadGaugeCansaco" style="margin: 10 auto;"></div>
                           </div>  
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                           <div class="form-group">
                             <div id="payloadGaugeAlmoco" style="margin: 10 auto;"></div>
                           </div>  
                         </div>                        
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                           <div class="form-group">
                             <div id="payloadGaugeMotivacao" style="margin: 10 auto;"></div>
                           </div>  
-                        </div>  
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div id="payloadGaugeFeriado" style="margin: 10 auto;"></div>
+                          </div>  
+                        </div>                        
                        </div>
               </li>
               <li class="list-group-item show-pacman" style="text-align: center"><a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a></li>

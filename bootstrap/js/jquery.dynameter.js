@@ -77,11 +77,11 @@
             // Initialize once.
             if (!$this.hasClass('dm-wrapperDiv')) {
                 // Skip init if settings are invalid.
-                if (settings.value < settings.min ||
+                /*if (settings.value < settings.min ||
                     settings.value > settings.max ||
                     settings.min >= settings.max) {
                     throw new Error("DynaMeter initialization failed -- invalid value/min/max settings.");
-                }
+                }*/
                 var currClrRef;
                 for (var key in settings.regions) {
                     currClrRef = settings.regions[key];
@@ -90,9 +90,9 @@
                         currClrRef != settings._clrRef2) {
                         throw new Error("DynaMeter initialization failed -- invalid region color-key.");
                     }
-                    if (key < settings.min || key > settings.max) {
+                    /*if (key < settings.min || key > settings.max) {
                         throw new Error("DynaMeter initialization failed -- invalid region value.");
-                    }
+                    }*/
                 }
 
                 $this.addClass('dm-wrapperDiv');
