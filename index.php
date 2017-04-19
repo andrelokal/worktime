@@ -63,7 +63,11 @@ date_default_timezone_set('America/Sao_Paulo');
 
     $('#config').click(function(){
       $('#myModal').modal()
-    })
+    });
+    $('#btn-pacman').click(function(){
+      setFocusIframe('frmPacman');      
+      $('#pacman').modal();      
+    });
 
     $('#save').click(function(){
       config.entrada = $('#entrada').val();
@@ -198,6 +202,10 @@ date_default_timezone_set('America/Sao_Paulo');
 
             }
 
+        function setFocusIframe(frameID) {            
+            $("#" + frameID).trigger("click");            
+        }
+            
         function Horario(){  
             Elem = $("#Clock");
                     var Hoje = new Date(); 
@@ -370,6 +378,7 @@ date_default_timezone_set('America/Sao_Paulo');
         background-size: 240px ;
       }
 
+
       #config{
         cursor: pointer;
       }
@@ -409,6 +418,7 @@ date_default_timezone_set('America/Sao_Paulo');
                 <div class="progress">
                   <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
                     <div class='icon working'></div>
+                    
                   </div>
                 </div>
               </li>
@@ -432,12 +442,28 @@ date_default_timezone_set('America/Sao_Paulo');
                         </div>  
                        </div>
               </li>
+              <li class="list-group-item show-pacman" style="text-align: center"><a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a></li>
             </ul>            
           </div>
        </div>
         </div>
         </div>
         </div>
+       
+       <div class="modal fade" tabindex="-1" role="dialog" id='pacman'>
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Pacman</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="frmPacman" align="center" width="556px" frameborder="0" scrolling="no" height="556px" src="pacman.php"></iframe>
+                <?php //include "pacman.php"; ?>
+              </div>              
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
        
         <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
           <div class="modal-dialog" role="document">
@@ -476,7 +502,7 @@ date_default_timezone_set('America/Sao_Paulo');
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+        </div><!-- /.modal -->               
     </body>
 
 </html>
