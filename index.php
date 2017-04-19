@@ -3,6 +3,8 @@ ini_set('short_open_tag','1');
 date_default_timezone_set('America/Sao_Paulo');
 error_reporting(E_ALL);
 
+$feriados_label = array();
+
 function geraTimestamp($data) 
 {
   $partes = explode('/', $data);
@@ -25,6 +27,8 @@ function orthodox_eastern($year) {
 
 function dias_feriados($ano = null)
 { 
+  global $feriados_label;
+  
   if ($ano === null)
   {
     $ano = intval(date('Y'));
@@ -48,14 +52,30 @@ function dias_feriados($ano = null)
  
     // These days have a date depending on easter
     mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 48,  $ano_pascoa),//2ºfeira Carnaval
-    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 47,  $ano_pascoa),//3ºfeura Carnaval	
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 47,  $ano_pascoa),//3ºfeira Carnaval	
     mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 2 ,  $ano_pascoa),//6ºfeira Santa  
     mktime(0, 0, 0, $mes_pascoa, $dia_pascoa     ,  $ano_pascoa),//Pascoa
-    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa + 60,  $ano_pascoa),//Corpus Cirist
+    mktime(0, 0, 0, $mes_pascoa, $dia_pascoa + 60,  $ano_pascoa),//Corpus Christ
   );
-  sort($feriados);  
+  
+  $feriados_label = array(date("Ymd", mktime(0, 0, 0, 1,  1,   $ano)) => 'ANO NOVO',
+                          date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 48,  $ano_pascoa)) => 'CARNAVAL',
+                          date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 47,  $ano_pascoa)) => 'CARNAVAL',
+                          date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 2 ,  $ano_pascoa)) => 'PAIXAO',
+                          date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa     ,  $ano_pascoa)) => 'PASCOA',
+                          date("Ymd", mktime(0, 0, 0, 4,  21,  $ano)) => 'TIRADENTES',
+                          date("Ymd", mktime(0, 0, 0, 5,  1,   $ano)) => '1o.MAIO',
+                          date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa + 60,  $ano_pascoa)) => 'CORPUS CHRISTI',
+                          date("Ymd", mktime(0, 0, 0, 9,  7,   $ano)) => 'INDEPENDENCIA',
+                          date("Ymd", mktime(0, 0, 0, 10,  12, $ano)) => 'N.S.APARECIDA',
+                          date("Ymd", mktime(0, 0, 0, 11, 15,  $ano)) => 'PROCLAMACAO',
+                          date("Ymd", mktime(0, 0, 0, 12, 25,  $ano)) => 'NATAL');
+  
+  
+  sort($feriados);   
   return $feriados;
 }
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -372,9 +392,9 @@ function dias_feriados($ano = null)
                             if ($dias > 0 && $dias < 6){ ?>
                                 
                                 $gaugeFeriado = $('#payloadGaugeFeriado').dynameter({
-                                    label: 'Feriado',
+                                    label: '<?php echo $feriados_label[date("Ymd", $a)]; ?>',
                                     value: <?php echo $dias ; ?>,
-                                    unit: 'dias para o',
+                                    unit: 'dias feriado',
                                     min: 5,
                                     max: 0
                                 });
