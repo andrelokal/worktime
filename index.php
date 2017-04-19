@@ -9,7 +9,7 @@ function geraTimestamp($data)
 }
 
 function dias_feriados($ano = null)
-{
+{ 
   if ($ano === null)
   {
     $ano = intval(date('Y'));
