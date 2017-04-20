@@ -83,7 +83,7 @@ function dias_feriados($ano = null)
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Idleness Systems</title>
+  <title>Idleness Center</title>
   <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css"> -->
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -162,7 +162,11 @@ function dias_feriados($ano = null)
     });
     $('#btn-bombergirl').click(function(){
         setFocusIframe('frmBomberGirl');      
-        $('#bombergirl').modal();      
+        $('#bombergirl').modal();
+    });      
+    $('#btn-racer').click(function(){
+        setFocusIframe('frmRacer');      
+        $('#racer').modal();      
     });
 
     $('#save').click(function(){
@@ -614,6 +618,7 @@ function dias_feriados($ano = null)
               	<a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a>
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45"></a>
+                <a id="btn-racer" href="#"><img src="racer.png" height="45"></a>
               </li>
             </ul>            
           </div>
@@ -662,6 +667,20 @@ function dias_feriados($ano = null)
               <div class="modal-body">
                 <iframe id="frmBomberGirl" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="bombergirl.php"></iframe>
                 <?php //include "bombergirl.php"; ?>
+              </div>              
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" tabindex="-1" role="dialog" id='racer'>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Racer</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>                
               </div>              
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
