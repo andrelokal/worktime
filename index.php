@@ -448,7 +448,7 @@ function dias_feriados($ano = null)
                                 $gaugeFeriado = $('#payloadGaugeFeriado').dynameter({
                                     label: '<?php echo $feriados_label[date("Ymd", $a)]; ?>',
                                     value: <?php echo $dias ; ?>,
-                                    unit: 'dias feriado',
+                                    unit: '<?php echo ($dias == 1 ? 'dia' : 'dias' ); ?> feriado',
                                     min: 5,
                                     max: 0
                                 });
