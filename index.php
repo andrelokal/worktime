@@ -160,6 +160,10 @@ function dias_feriados($ano = null)
         setFocusIframe('frmTetris');      
         $('#tetris').modal();      
     });
+    $('#btn-racer').click(function(){
+        setFocusIframe('frmRacer');      
+        $('#racer').modal();      
+    });
 
     $('#save').click(function(){
       config.entrada = $('#entrada').val();
@@ -609,6 +613,7 @@ function dias_feriados($ano = null)
               <li class="list-group-item show-pacman" style="text-align: center">
               	<a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a>
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45"></a>
+                <a id="btn-racer" href="#"><img src="racer.png" height="45"></a>
               </li>
             </ul>            
           </div>
@@ -642,6 +647,20 @@ function dias_feriados($ano = null)
               <div class="modal-body">
                 <iframe id="frmTetris" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="tetris.php"></iframe>
                 <?php //include "tetris.php"; ?>
+              </div>              
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id='racer'>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Racer</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>                
               </div>              
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
