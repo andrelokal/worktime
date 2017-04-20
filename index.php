@@ -131,8 +131,8 @@ function dias_feriados($ano = null)
   var MI;
   var SS;
   
-  var HA; //Hora almoço
-  var MA; // Minuto almoço
+  var HA; //Hora almoï¿½o
+  var MA; // Minuto almoï¿½o
  
   var AT; // Minutos totais atual
     
@@ -444,7 +444,7 @@ function dias_feriados($ano = null)
                                 $gaugeFeriado = $('#payloadGaugeFeriado').dynameter({
                                     label: '<?php echo $feriados_label[date("Ymd", $a)]; ?>',
                                     value: <?php echo $dias ; ?>,
-                                    unit: 'dias feriado',
+                                    unit: '<?php echo ($dias == 1 ? 'dia' : 'dias' ); ?> feriado',
                                     min: 5,
                                     max: 0
                                 });
