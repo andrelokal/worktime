@@ -6,9 +6,11 @@
  */
 if (isset($_GET['ghosts'])) {
         $number_of_ghosts = (int)$_GET['ghosts'];
+        $score = (int)$_GET['score'];
     }
     else {
-        $number_of_ghosts = 6;
+        $number_of_ghosts = 3;
+        $_GET['ghosts'] = 3;
     }
 ?>
 <!DOCTYPE html>
@@ -322,15 +324,14 @@ if (isset($_GET['ghosts'])) {
              START OF MAIN FUNCTION
            ************************** */
         function main() {
-            document.getElementById("score_text").innerHTML = "Score: " + parseInt((score - time_taken/10), 10);
+            var score_level = <?php echo (isset($score) ? $score : 0); ?>;
+            document.getElementById("score_text").innerHTML = "Score: " + parseInt(((score_level > 0 ? score_level : score) - time_taken/10), 10);
             
-            if (total_balls_eaten === 61) {
-                win_or_lose_text.innerHTML = "Joga Muito!";
-                if(confirm('deseja continuar?')){
-                    main();   
-                }else{
-                    return false;
-                }
+            if (total_balls_eaten === 61) {//61
+                //win_or_lose_text.innerHTML = "Joga Muito!";
+                alert('LEVEL '+<?php echo ($_GET['ghosts'] - 3) == 0 ? 2 : ($_GET['ghosts'] - 3);?>);
+                location.href="pacman.php?ghosts=<?php echo ($_GET['ghosts']+1);?>&score=" + parseInt((score - time_taken/10), 10);
+
             }
             else if (eaten_by_ghosts === true) {
                 win_or_lose_text.innerHTML = "Se Fudeu!";
