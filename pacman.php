@@ -326,6 +326,11 @@ if (isset($_GET['ghosts'])) {
             
             if (total_balls_eaten === 61) {
                 win_or_lose_text.innerHTML = "Joga Muito!";
+                if(confirm('deseja continuar?')){
+                    main();   
+                }else{
+                    return false;
+                }
             }
             else if (eaten_by_ghosts === true) {
                 win_or_lose_text.innerHTML = "Se Fudeu!";
