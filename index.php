@@ -97,6 +97,12 @@ function dias_feriados($ano = null)
 
   <script>
 
+  _default =  { 
+                entrada:"08:00",
+                saida:  "17:48",
+                almoco: "11:45"
+              }
+  
   var config ;
   if( localStorage.getItem('config') ){
 
@@ -120,22 +126,28 @@ function dias_feriados($ano = null)
   var HS; // hora saida
   var MS; // minutos saida
   var MT; // minutos totais de trabalho  
-
+  var HAT; //hora atual
   var HH;
   var MI;
   var SS;
   
-  var HA; //Hora atual
-  var MA; // Minuto Atual
+  var HA; //Hora almoço
+  var MA; // Minuto almoço
+ 
   var AT; // Minutos totais atual
-
+    
   $( function() {
    
    Init()
 
     $("#progressbar").progressbar({value: 0});
-
+    
     $('#saida,#entrada,#almoco').mask( '99:99' );
+    $('#saida,#entrada,#almoco').blur(function(){
+        if( !ValidaHora( $(this).val() ) ){
+            $(this).val( _default[ $(this).attr('id') ] )
+        }   
+    })
 
     $('#config').click(function(){
       $('#myModal').modal()
@@ -157,6 +169,36 @@ function dias_feriados($ano = null)
     
   });
 
+  function ValidaHora( valor ){
+      
+    if( valor.length != 5 )  return false;
+      
+    var regex = /([0-9]{2})\:([0-9]{2})/;
+    var m = regex.exec(valor);
+    
+    if( !m[1] ){
+        return false;
+    }
+    
+    if( !m[2] ){
+        return false;
+    }
+    
+    H = Number(m[1]);
+    M = Number(m[2]);
+    
+    if( Number(H) > 23  ){
+       return false; 
+    }
+    
+    if( Number(M) > 59  ){
+       return false; 
+    }
+    
+    return true;
+            
+  }
+  
   function Init(){
      if( config.entrada ){
         $('#entrada').val(config.entrada)
@@ -259,12 +301,16 @@ function dias_feriados($ano = null)
 
                 faltam += seconds.padStart(2, '0');
 
+                HAT = hoje.getHours();
+                
+                
+                
                 if (dd+hh+mm+ss > 0) {
-
+                    
                     if ($totalDaysOfWeek == 0) {
                         faltam = 'Falta nada!!! Fim de semana caralho!!!';
-                    }else if(HA < HE || HA > HS){
-                        faltam = 'Falta nada!!! Nos vemos em breve!!!';   
+                    }else if(HAT < HE || HAT > HS){
+                        faltam = 'Falta nada!!! Nos vemos em breve ;)';   
                     }
                     
                     $('#contador').html(faltam);
@@ -325,8 +371,12 @@ function dias_feriados($ano = null)
                }
                
                if(pa > 100){
-                   pa = p-15;    
+                   pa = p-15;   
                }
+               
+               if(pa < 0){
+                    pa = 0; 
+               } 
                
                if ($totalDaysOfWeek == 0) {
                    p = 100;
