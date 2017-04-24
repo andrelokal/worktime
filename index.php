@@ -152,21 +152,30 @@ function dias_feriados($ano = null)
     $('#config').click(function(){
       $('#myModal').modal()
     });
+    
     $('#btn-pacman').click(function(){
       setFocusIframe('frmPacman');      
       $('#pacman').modal();      
     });
+    
     $('#btn-tetris').click(function(){
         setFocusIframe('frmTetris');      
         $('#tetris').modal();      
     });
+    
     $('#btn-bombergirl').click(function(){
         setFocusIframe('frmBomberGirl');      
         $('#bombergirl').modal();
-    });      
-    $('#btn-racer').click(function(){
+    });
+          
+    /*$('#btn-racer').click(function(){
         setFocusIframe('frmRacer');      
         $('#racer').modal();      
+    });*/
+    
+    $('#btn-tower').click(function(){
+        setFocusIframe('frmTower');      
+        $('#tower').modal();      
     });
 
     $('#save').click(function(){
@@ -618,7 +627,8 @@ function dias_feriados($ano = null)
               	<a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a>
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45"></a>
-                <a id="btn-racer" href="#"><img src="racer.png" height="45"></a>
+                <a id="btn-tower" href="#"><img src="tower/tower.png" height="45"></a>
+                <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
               </li>
             </ul>            
           </div>
@@ -671,8 +681,22 @@ function dias_feriados($ano = null)
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
-        <div class="modal fade" tabindex="-1" role="dialog" id='racer'>
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id='tower'>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Torre 3D</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="frmTower" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="tower/index.html"></iframe>                
+              </div>              
+            </div>
+          </div>
+        </div-->
+        
+        <!--div class="modal fade" tabindex="-1" role="dialog" id='racer'>
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -682,9 +706,9 @@ function dias_feriados($ano = null)
               <div class="modal-body">
                 <iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>                
               </div>              
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+            </div>
+          </div>
+        </div-->
        
         <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
           <div class="modal-dialog" role="document">
