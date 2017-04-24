@@ -178,6 +178,11 @@ function dias_feriados($ano = null)
         $('#tower').modal();      
     });
 
+    $('#btn-delta').click(function(){
+        setFocusIframe('frmDelta');      
+        $('#delta').modal();      
+    });
+
     $('#save').click(function(){
       config.entrada = $('#entrada').val();
       config.saida = $('#saida').val();
@@ -628,6 +633,7 @@ function dias_feriados($ano = null)
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45" title="Tetris"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45" title="BomberGirl"></a>
                 <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
+                <a id="btn-delta" href="#"><img src="delta/delta.jpg" height="45" title="Delta"></a>
                 <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
               </li>
             </ul>            
@@ -691,6 +697,20 @@ function dias_feriados($ano = null)
               </div>
               <div class="modal-body">
                 <iframe id="frmTower" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="tower/index.html"></iframe>                
+              </div>              
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal fade" tabindex="-1" role="dialog" id='delta'>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delta</h4>
+              </div>
+              <div class="modal-body">
+                <iframe id="frmDelta" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="delta/index.html"></iframe>                
               </div>              
             </div>
           </div>
