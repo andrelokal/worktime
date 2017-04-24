@@ -624,10 +624,10 @@ function dias_feriados($ano = null)
                        </div>
               </li>
               <li class="list-group-item show-pacman" style="text-align: center">
-              	<a id="btn-pacman" href="#"><img src="pacman.png" height="45"></a>
-              	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45"></a>
-              	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45"></a>
-                <a id="btn-tower" href="#"><img src="tower/tower.png" height="45"></a>
+              	<a id="btn-pacman" href="#"><img src="pacman.png" height="45" title="Pacman"></a>
+              	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45" title="Tetris"></a>
+              	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45" title="BomberGirl"></a>
+                <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
                 <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
               </li>
             </ul>            
