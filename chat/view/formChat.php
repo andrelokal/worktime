@@ -72,7 +72,7 @@
                     
                     $("#content").html('')
                     for( var i in result ){
-                        $("#content").append(result[i].hora +' ['+ result[i].nome +'] diz: ' + result[i].texto + "<br>")    
+                        $("#content").append("<div>"+result[i].hora +' ['+ result[i].nome +'] diz: ' + result[i].texto + "</div>")    
                     }
                     var h = $('#content').innerHeight() + 800
                     $('#content').scrollTop( h )
@@ -81,10 +81,10 @@
     </script>
 </head>
 <body onload="ChargerBox(); crono();">
-<div id="content" style="height: 500; width: 400; border: 1px #000; overflow: scroll; "></div>
+<div id="content" ></div>
 <form method="post" id="form">
     <input type="hidden" name="action" value="2" />
-    Texto: <input type="text" name="texto" id="texto" />
+    <input type="text" name="texto" id="texto" />
     <input type="button" id="button" value="Enviar">
     <input type="button" id="sair" value="sair">
 </form>

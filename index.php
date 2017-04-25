@@ -94,6 +94,9 @@ function dias_feriados($ano = null)
   <script src="bootstrap/js/jquery.dynameter.js"></script>
   <script src="jquery.mask.js"></script>
 
+  <script src="chat/chat.js"></script>
+
+
 
   <script>
 
