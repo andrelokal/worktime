@@ -893,7 +893,7 @@ Delta = function() {
     isNotMute: function()  { return !this.isMute();                 },
     play:      function(s) { if (this.isNotMute()) return s.play(); },
 
-    playTitleMusic: function() { this.stopAllMusic(); this.play(this.sounds.title); },
+    playTitleMusic: function() { this.stopAllMusic(); /*this.play(this.sounds.title);*/ },
     playGameMusic:  function() { this.stopAllMusic(); this.play(this.sounds.game);  },
     stopAllMusic:   function() { this.sounds.title.stop(); this.sounds.game.stop(); },
     explode:        function() { this.play(this.sounds.explode);                    },

@@ -3565,7 +3565,7 @@ Snakes = function() {
     allowFx:         function()   { return !userAgent.isSafari;       }, // safari sucks at playing short sound FX (delays)
     isMute:          function()   { return toBool(this.storage.mute); },
     isNotMute:       function()   { return !this.isMute();            },
-    playMenuMusic:   function()   { if (this.allowMusic() && this.isNotMute()) { this.sounds.game.stop(); this.sounds.menu.play(); } },
+    playMenuMusic:   function()   { if (this.allowMusic() && this.isNotMute()) { this.sounds.game.stop(); /*this.sounds.menu.play();*/ } },
     playGameMusic:   function()   { if (this.allowMusic() && this.isNotMute()) { this.sounds.menu.stop(); this.sounds.game.play(); } },
     playDieFx:       function()   { if (this.allowFx()    && this.isNotMute()) { this.sounds.die.play();       } },
     playEatFx:       function()   { if (this.allowFx()    && this.isNotMute()) { this.sounds.eat.play();       } },
