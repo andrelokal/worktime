@@ -27,9 +27,9 @@ switch ($action) {
         
         $usuario = new Usuario();
 
-        $usuario->setNome($_SESSION['nome']);
-        $usuario->setTexto($_POST['form'][1]['value']);
-        $usuario->setSala($_SESSION['sala'].$_SESSION['senha']);
+        $usuario->setNome($usuario->striptags($_SESSION['nome']));
+        $usuario->setTexto($usuario->striptags($_POST['form'][1]['value']));
+        $usuario->setSala($usuario->striptags($_SESSION['sala'].$_SESSION['senha']));
         
         $response = $usuario->save($diretorio);
         
