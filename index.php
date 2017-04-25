@@ -94,7 +94,7 @@ function dias_feriados($ano = null)
   <script src="bootstrap/js/jquery.dynameter.js"></script>
   <script src="jquery.mask.js"></script>
 
-  <script src="chat/chat.js"></script>
+  <script src="chat/chat.js?1"></script>
 
 
 
@@ -189,6 +189,16 @@ function dias_feriados($ano = null)
     $('#btn-snake').click(function(){
         setFocusIframe('frmSnake');      
         $('#snake').modal();      
+    });
+    
+     $('#btn-chat').click(function(){
+        if (showchat == true){
+          showchat = false;
+          closechat();       
+        }else{
+          showchat = true;            
+          callchat();
+        }  
     });
 
     $('#save').click(function(){
@@ -641,8 +651,9 @@ function dias_feriados($ano = null)
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45" title="Tetris"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45" title="BomberGirl"></a>
                 <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
-                <a id="btn-delta" href="#"><img src="delta/delta.jpg" height="45" title="Delta"></a>
+                <a id="btn-delta" href="#"><img src="delta/startup.png" height="45" title="Delta"></a>
                 <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a>
+                <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45"></a>
                 <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
               </li>
             </ul>            

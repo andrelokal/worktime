@@ -1,6 +1,6 @@
+var showchat = true;
 
-$(function(){
-
+function callchat() {
 	$('#chat').remove();
 	$('body').append( "<div id='chat'><iframe width=100% height=100% frameborder=0 src='chat/' framescroll='no' ></iframe></div>" )
 	var css = {	position: 'absolute',
@@ -10,10 +10,13 @@ $(function(){
 				right: '0px'}
 
 	$('#chat').css(css);
+}
 
-	/*$('#chat icon').unbind('click').click(function(){
-		$('#chat iframe').show()
-	})*/
+function closechat() {
+	$('#chat').remove();	
+}
 
+$(function(){
+	callchat();
 
 })
