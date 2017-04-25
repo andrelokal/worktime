@@ -331,8 +331,7 @@ function dias_feriados($ano = null)
 
                 hh = hh - (dd * 24);
 
-                var pad = "0000"
-                
+                var pad = "0000";                
                 var hours = pad.substring(0, pad.length - hh.length) + hh;
                 var minutes = pad.substring(0, pad.length - mm.length) + mm;
                 var seconds = pad.substring(0, pad.length - ss.length) + ss;
