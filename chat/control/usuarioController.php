@@ -51,12 +51,14 @@ switch ($action) {
     case 3: //Carregar mensagens
         
         $usuario = new Usuario($_SESSION['sala'].$_SESSION['senha'],$diretorio);
-
-        foreach($usuario->getData() as $value){
-             
+        
+        $resArray = $usuario->getData();
+        $countArray = count($resArray);        
+        $resArray2 = array_slice($resArray, ($countArray > 100) ? ($countArray-100) : 1);
+        foreach($resArray2 as $value){
             if(json_decode($value,true) != null){
                 $data[] = json_decode($value,true);    
-            }           
+            }  
         }
         echo json_encode($data);
         
