@@ -15,10 +15,10 @@ define("HOST", @($_SERVER['SERVER_ADDR']));
 
 //autoload das classes
 function __autoload($classe){
-	if(!@include_once PATH_ROOT."model/".$classe.".php");
-		if(!@include_once PATH_ROOT."util/".$classe.".php");
-			if(!@include_once PATH_ROOT."control/".$classe.".php");
-				if(!@include_once PATH_ROOT."view/".$classe.".php");
+	if(!@include_once "../model/".$classe.".php");
+		if(!@include_once "../util/".$classe.".php");
+			if(!@include_once "../control/".$classe.".php");
+				if(!@include_once "../view/".$classe.".php");
 }
 
 ?>
