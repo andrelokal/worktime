@@ -6,7 +6,7 @@ $action = '';
 @$action = $_POST['action'];
 
 //caminho do diretorio que quero salvar
-$diretorio = PATH_ROOT.'/arquivos';
+$diretorio = '../arquivos';
 
 if($action == ''){
    $action = $_POST['form'][0]['value'];  
