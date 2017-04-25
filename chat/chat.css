@@ -36,6 +36,7 @@ label{
 	box-sizing: border-box;
 	padding: 5px;
 	overflow-y: scroll;
+	overflow-x: none;
 }
 
 #content div{
