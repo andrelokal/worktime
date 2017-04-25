@@ -10,7 +10,9 @@ class ArqLog{
         
         if(file_exists($this->fileName)){            
             $this->content = file_get_contents($this->fileName);    
-        }else{            
+        }else{ 
+            if (is_dir(@$path))
+                mkdir($path, 0777);         
             file_put_contents($this->fileName,"\n");
             chmod($this->fileName, 0777);            
         }        
