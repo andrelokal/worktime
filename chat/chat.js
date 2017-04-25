@@ -17,6 +17,6 @@ function closechat() {
 }
 
 $(function(){
-	callchat();
+	closechat();
 
 })
