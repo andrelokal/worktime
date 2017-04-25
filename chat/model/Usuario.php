@@ -60,28 +60,8 @@ class Usuario{
 	
 	}
     
-    public function striptags($text, $tags = '', $invert = FALSE) {
-		$text = preg_replace('|https?://www\.[a-z\.0-9]+|i', '<strong>Proibido URLs!</strong>', $text);
-		$text = preg_replace('|www\.[a-z\.0-9]+|i', '<strong>Proibido URLs!</strong>', $text);		
-		//$text = str_replace(range(0, 9), null, $text);
-		//$text = preg_replace('/\d+$/', null, $text);
-		
-		preg_match_all('/<(.+?)[\s]*\/?[\s]*>/si', trim($tags), $tags);
-		$tags = array_unique($tags[1]);
-	
-		if(is_array($tags) AND count($tags) > 0) {
-			if($invert == FALSE) {
-				return preg_replace('@<(?!(?:'. implode('|', $tags) .')\b)(\w+)\b.*?>.*?</\1>@si', '', $text);
-			}
-			else {
-				return preg_replace('@<('. implode('|', $tags) .')\b.*?>.*?</\1>@si', '', $text);
-			}
-		}
-		elseif($invert == FALSE) {
-			return preg_replace('@<(\w+)\b.*?>.*?</\1>@si', '', $text);
-		}
-		
-		return $text;
+    public function striptags($text, $tags = '', $invert = FALSE) {				
+		return strip_tags($text);
 	}
 	
 	
