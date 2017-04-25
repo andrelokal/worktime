@@ -11,7 +11,7 @@ class ArqLog{
         if(file_exists($this->fileName)){
             $this->content = file_get_contents($this->fileName);    
         }else{
-            file_put_contents($this->fileName,"");    
+            file_put_contents($this->fileName,"\n");    
         }        
     }
     

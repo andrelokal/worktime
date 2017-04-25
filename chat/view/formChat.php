@@ -1,6 +1,3 @@
-<?php
-include_once('util/config.php');   
-?>
 <!DOCTYPE html>
 <html>
 <head>

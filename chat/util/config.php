@@ -7,8 +7,8 @@ date_default_timezone_set('America/Sao_Paulo');
 // --- //
 
 //definicao dos caminhos e rotas do projeto
-define("PATH_ROOT", @($_SERVER['DOCUMENT_ROOT']."/POO/"));
-define("PATH", @($_SERVER['HTTP_REFERER']."/POO/"));
+define("PATH_ROOT", @($_SERVER['DOCUMENT_ROOT']."/worktime/chat/"));
+define("PATH", @($_SERVER['HTTP_REFERER']."/worktime/chat/"));
 define("HOST", @($_SERVER['SERVER_ADDR']));
 // ----- //
 
