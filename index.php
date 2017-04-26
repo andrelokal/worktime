@@ -216,17 +216,17 @@ function dias_feriados($ano = null)
       })
     });
     
-    /*
+    
     $('#btn-racer').click(function(){     
       $('#game').modal();
       $('#game .modal-title').html('Racer');
-      $('#game .modal-body').html( '<iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>' );      
+      $('#game .modal-body').html( '<iframe id="frmRacer" align="center" width="560px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>' );      
       $('#game').on('hidden.bs.modal', function (e) {
           $('#game .modal-body').html('');
           $('#game .modal-title').html('');
       })
     });
-    */
+    
     
      $('#btn-chat').click(function(){
         if (showchat == true){
@@ -690,7 +690,7 @@ function dias_feriados($ano = null)
                 <a id="btn-delta" href="#"><img src="delta/startup.png" height="45" title="Delta"></a>
                 <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a>
                 <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45" title="Chat" ></a>
-                <!--a id="btn-racer" href="#"><img src="racer.png" height="45"></a-->
+                <a id="btn-racer" href="#"><img src="racer.png" height="45" title="Racer"></a>
               </li>
             </ul>            
           </div>
@@ -700,7 +700,7 @@ function dias_feriados($ano = null)
         </div>
        
        
-       <!-- Mudal De Games -->
+       <!-- Modal De Games -->
        <div class="modal fade" tabindex="-1" role="dialog" id='game'>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -714,7 +714,7 @@ function dias_feriados($ano = null)
             </div>
           </div>
         </div>
-        <!-- Fim Mudal De Games -->
+        <!-- Fim Modal De Games -->
         
         
         <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
