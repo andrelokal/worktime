@@ -155,7 +155,7 @@ function dias_feriados($ano = null)
     $('#config').click(function(){
       $('#myModal').modal()
     });
-    
+    /*
     $('#btn-pacman').click(function(){
       setFocusIframe('frmPacman');      
       $('#pacman').modal();      
@@ -175,7 +175,7 @@ function dias_feriados($ano = null)
         setFocusIframe('frmRacer');      
         $('#racer').modal();      
     });*/
-    
+    /*
     $('#btn-tower').click(function(){
         setFocusIframe('frmTower');      
         $('#tower').modal();      
@@ -190,7 +190,7 @@ function dias_feriados($ano = null)
         setFocusIframe('frmSnake');      
         $('#snake').modal();      
     });
-    
+     */
      $('#btn-chat').click(function(){
         if (showchat == true){
           showchat = false;
@@ -646,12 +646,12 @@ function dias_feriados($ano = null)
                        </div>
               </li>
               <li class="list-group-item show-pacman" style="text-align: center">
-              	<a id="btn-pacman" href="#"><img src="pacman.png" height="45" title="Pacman"></a>
+              	<!--a id="btn-pacman" href="#"><img src="pacman.png" height="45" title="Pacman"></a>
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45" title="Tetris"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45" title="BomberGirl"></a>
                 <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
                 <a id="btn-delta" href="#"><img src="delta/startup.png" height="45" title="Delta"></a>
-                <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a>
+                <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a-->
                 <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45"></a>
                 <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
               </li>
@@ -662,7 +662,7 @@ function dias_feriados($ano = null)
         </div>
         </div>
        
-       <div class="modal fade" tabindex="-1" role="dialog" id='pacman'>
+       <!--div class="modal fade" tabindex="-1" role="dialog" id='pacman'>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -673,9 +673,9 @@ function dias_feriados($ano = null)
                 <iframe id="frmPacman" align="center" width="556px" frameborder="0" scrolling="no" height="556px" src="pacman.php"></iframe>
                 <?php //include "pacman.php"; ?>
               </div>              
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
         
         <div class="modal fade" tabindex="-1" role="dialog" id='tetris'>
           <div class="modal-dialog modal-lg" role="document">
@@ -688,9 +688,9 @@ function dias_feriados($ano = null)
                 <iframe id="frmTetris" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="tetris.php"></iframe>
                 <?php //include "tetris.php"; ?>
               </div>              
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
         
         <div class="modal fade" tabindex="-1" role="dialog" id='bombergirl'>
           <div class="modal-dialog modal-lg" role="document">
@@ -703,9 +703,9 @@ function dias_feriados($ano = null)
                 <iframe id="frmBomberGirl" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="bombergirl.php"></iframe>
                 <?php //include "bombergirl.php"; ?>
               </div>              
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+            </div>
+          </div>
+        </div>
         
         <div class="modal fade" tabindex="-1" role="dialog" id='tower'>
           <div class="modal-dialog modal-lg" role="document">
@@ -747,7 +747,7 @@ function dias_feriados($ano = null)
               </div>              
             </div>
           </div>
-        </div>
+        </div-->
         
         <!--div class="modal fade" tabindex="-1" role="dialog" id='racer'>
           <div class="modal-dialog modal-lg" role="document">
@@ -801,8 +801,7 @@ function dias_feriados($ano = null)
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal --> 
-        
-                      
+              
     </body>
 
 </html>
