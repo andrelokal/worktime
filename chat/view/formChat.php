@@ -74,7 +74,7 @@
                     for( var i in result ){
                         $("#content").append("<div>"+result[i].hora +' ['+ result[i].nome +'] diz: ' + result[i].texto + "</div>")    
                     }
-                    var h = $('#content').innerHeight() + 800
+                    var h = $('#content').innerHeight() + 100000000
                     $('#content').scrollTop( h )
             }});
         }
