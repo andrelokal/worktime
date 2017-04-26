@@ -155,42 +155,79 @@ function dias_feriados($ano = null)
     $('#config').click(function(){
       $('#myModal').modal()
     });
-    /*
-    $('#btn-pacman').click(function(){
-      setFocusIframe('frmPacman');      
-      $('#pacman').modal();      
+    
+    $('#btn-pacman').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Pacman');
+      $('#game .modal-body').html( '<iframe id="frmPacman" align="center" width="556px" frameborder="0" scrolling="no" height="556px" src="pacman.php"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
     });
     
-    $('#btn-tetris').click(function(){
-        setFocusIframe('frmTetris');      
-        $('#tetris').modal();      
+    $('#btn-tetris').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Tetris');
+      $('#game .modal-body').html( '<iframe id="frmTetris" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="tetris.php"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
+    });
+   
+    $('#btn-bombergirl').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('BomberGirl');
+      $('#game .modal-body').html( '<iframe id="frmBomberGirl" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="bombergirl.php"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
     });
     
-    $('#btn-bombergirl').click(function(){
-        setFocusIframe('frmBomberGirl');      
-        $('#bombergirl').modal();
+    $('#btn-delta').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Delta');
+      $('#game .modal-body').html( '<iframe id="frmDelta" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="delta/index.html"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
     });
-          
-    /*$('#btn-racer').click(function(){
-        setFocusIframe('frmRacer');      
-        $('#racer').modal();      
-    });*/
+    
+    $('#btn-snake').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Snake');
+      $('#game .modal-body').html( '<iframe id="frmSnake" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="snake/index.html"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
+    });
+    
+    $('#btn-tower').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Torre 3D');
+      $('#game .modal-body').html( '<iframe id="frmTower" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="tower/index.html"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
+    });
+    
     /*
-    $('#btn-tower').click(function(){
-        setFocusIframe('frmTower');      
-        $('#tower').modal();      
+    $('#btn-racer').click(function(){     
+      $('#game').modal();
+      $('#game .modal-title').html('Racer');
+      $('#game .modal-body').html( '<iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>' );      
+      $('#game').on('hidden.bs.modal', function (e) {
+          $('#game .modal-body').html('');
+          $('#game .modal-title').html('');
+      })
     });
-
-    $('#btn-delta').click(function(){
-        setFocusIframe('frmDelta');      
-        $('#delta').modal();      
-    });
-
-    $('#btn-snake').click(function(){
-        setFocusIframe('frmSnake');      
-        $('#snake').modal();      
-    });
-     */
+    */
+    
      $('#btn-chat').click(function(){
         if (showchat == true){
           showchat = false;
@@ -646,14 +683,14 @@ function dias_feriados($ano = null)
                        </div>
               </li>
               <li class="list-group-item show-pacman" style="text-align: center">
-              	<!--a id="btn-pacman" href="#"><img src="pacman.png" height="45" title="Pacman"></a>
+              	<a id="btn-pacman" href="#"><img src="pacman.png" height="45" title="Pacman"></a>
               	<a id="btn-tetris" href="#"><img src="icon-tetris.svg" height="45" title="Tetris"></a>
               	<a id="btn-bombergirl" href="#"><img src="img/favicon.ico" height="45" title="BomberGirl"></a>
                 <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
                 <a id="btn-delta" href="#"><img src="delta/startup.png" height="45" title="Delta"></a>
-                <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a-->
+                <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a>
                 <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45" title="Chat" ></a>
-                <!-- a id="btn-racer" href="#"><img src="racer.png" height="45"></a -->
+                <!--a id="btn-racer" href="#"><img src="racer.png" height="45"></a-->
               </li>
             </ul>            
           </div>
@@ -662,107 +699,24 @@ function dias_feriados($ano = null)
         </div>
         </div>
        
-       <!--div class="modal fade" tabindex="-1" role="dialog" id='pacman'>
+       
+       <!-- Mudal De Games -->
+       <div class="modal fade" tabindex="-1" role="dialog" id='game'>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Pacman</h4>
+                <h4 class="modal-title"></h4>
               </div>
-              <div class="modal-body">
-                <iframe id="frmPacman" align="center" width="556px" frameborder="0" scrolling="no" height="556px" src="pacman.php"></iframe>
-                <?php //include "pacman.php"; ?>
+              <div class="modal-body" >
+                
               </div>              
             </div>
           </div>
         </div>
+        <!-- Fim Mudal De Games -->
         
-        <div class="modal fade" tabindex="-1" role="dialog" id='tetris'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Tetris</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmTetris" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="tetris.php"></iframe>
-                <?php //include "tetris.php"; ?>
-              </div>              
-            </div>
-          </div>
-        </div>
         
-        <div class="modal fade" tabindex="-1" role="dialog" id='bombergirl'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Bomber Girl</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmBomberGirl" align="center" width="100%" frameborder="0" scrolling="no" height="73%" src="bombergirl.php"></iframe>
-                <?php //include "bombergirl.php"; ?>
-              </div>              
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal fade" tabindex="-1" role="dialog" id='tower'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Torre 3D</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmTower" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="tower/index.html"></iframe>                
-              </div>              
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal fade" tabindex="-1" role="dialog" id='delta'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Delta</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmDelta" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="delta/index.html"></iframe>                
-              </div>              
-            </div>
-          </div>
-        </div>
-        
-        <div class="modal fade" tabindex="-1" role="dialog" id='snake'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Snake</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmSnake" align="center" width="100%" frameborder="0" scrolling="no" height="480px" src="snake/index.html"></iframe>                
-              </div>              
-            </div>
-          </div>
-        </div-->
-        
-        <!--div class="modal fade" tabindex="-1" role="dialog" id='racer'>
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Racer</h4>
-              </div>
-              <div class="modal-body">
-                <iframe id="frmRacer" align="center" width="640px" frameborder="0" scrolling="no" height="480px" src="racer/v4.final.html"></iframe>                
-              </div>              
-            </div>
-          </div>
-        </div-->
-       
         <div class="modal fade" tabindex="-1" role="dialog" id='myModal'>
           <div class="modal-dialog" role="document">
             <div class="modal-content">
