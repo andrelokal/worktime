@@ -1,4 +1,4 @@
-var showchat = true;
+var showchat = false;
 
 function callchat() {
 	$('#chat').remove();

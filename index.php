@@ -689,8 +689,8 @@ function dias_feriados($ano = null)
                 <a id="btn-tower" href="#"><img src="tower/tower.png" height="45" title="Torre 3D"></a>
                 <a id="btn-delta" href="#"><img src="delta/startup.png" height="45" title="Delta"></a>
                 <a id="btn-snake" href="#"><img src="snake/firesnake.png" height="45" title="Snake"></a>
-                <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45" title="Chat" ></a>
                 <a id="btn-racer" href="#"><img src="racer.png" height="45" title="Racer"></a>
+                <a id="btn-chat" href="#"><img src="chat/chatting.png" height="45" title="Chat" ></a>                
               </li>
             </ul>            
           </div>
