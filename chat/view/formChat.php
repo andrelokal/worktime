@@ -131,8 +131,8 @@ include_once('util/config.php');
                         nummsgs = 0;
                     } else {                        
                         if( Number(h) != Number(last) ){
-                            nummsgs++;
-                            NewMessage(nummsgs);
+                            //nummsgs++;
+                            NewMessage(1);
                         }
                         position = Math.round(h - st)    
                     }
