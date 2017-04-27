@@ -42,8 +42,7 @@ include_once('util/config.php');
                 data: { 'form':data },  
                 url: "<?php echo 'control/usuarioController.php'; ?>", 
                 success: function(result){
-                    ChargerBox();
-                    GottoDown()
+                    ChargerBox( true );                    
                     
             }});
 
@@ -88,7 +87,7 @@ include_once('util/config.php');
 
         var position = 0;
         var last = 0;
-        function ChargerBox(){
+        function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
             var st = $('#content').scrollTop();
@@ -115,17 +114,26 @@ include_once('util/config.php');
                                         
                     var alt = $('#content').innerHeight()
                     var h = $('#content').prop('scrollHeight');
+
+                    if( gotodown ){
+                      $('#content').scrollTop( h ); 
+                      last = h; 
+                    } 
+
                     var st = $('#content').scrollTop();
                     if(position == alt ){
                         last = h;
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
+                        $('#NewMessage').remove()
                     } else {
                         if( Number(h) != Number(last) ){
                             NewMessage()
                         }
                         position = Math.round(h - st)    
                     }
+
+
                     
                     
                     
