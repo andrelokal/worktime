@@ -50,12 +50,14 @@ include_once('util/config.php');
             $('#texto').focus();
         }
 
-        function NewMessage(){
+        function NewMessage(num){
             if( !$('#NewMessage').lenght ){
+                var nummsgs = (num > 1 ? num + " Novas Mensagens" : "Nova Mensagem")
                 $('#NewMessage').remove();
-                $('#form').append("<div id='NewMessage'>NOVAS</div>")
+                $('#form').append("<div id='NewMessage'>" + nummsgs + "</div>")
                 $('#NewMessage').unbind('click').click(function(){
                     
+                    num = 0;
                     GottoDown()
                     $('#NewMessage').remove()
                 })
@@ -87,6 +89,7 @@ include_once('util/config.php');
 
         var position = 0;
         var last = 0;
+        var nummsgs = 0;
         function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
@@ -126,9 +129,11 @@ include_once('util/config.php');
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
                         $('#NewMessage').remove()
+                        nummsgs = 0;
                     } else {
+                        nummsgs++;
                         if( Number(h) != Number(last) ){
-                            NewMessage()
+                            NewMessage(nummsgs)
                         }
                         position = Math.round(h - st)    
                     }
