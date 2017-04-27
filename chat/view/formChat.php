@@ -52,14 +52,14 @@ include_once('util/config.php');
 
         function NewMessage(num){
             if( !$('#NewMessage').lenght ){
-                var nummsgs = (num > 1 ? num + " Novas Mensagens" : "Nova Mensagem")
+                var nummsg = (num > 1 ? num + " Novas Mensagens" : "Nova Mensagem");
                 $('#NewMessage').remove();
-                $('#form').append("<div id='NewMessage'>" + nummsgs + "</div>")
+                $('#form').append("<div id='NewMessage'>" + nummsg + "</div>")
                 $('#NewMessage').unbind('click').click(function(){
                     
                     num = 0;
-                    GottoDown()
-                    $('#NewMessage').remove()
+                    GottoDown();
+                    $('#NewMessage').remove();
                 })
             }
             
@@ -128,12 +128,12 @@ include_once('util/config.php');
                         last = h;
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
-                        $('#NewMessage').remove()
+                        $('#NewMessage').remove();
                         nummsgs = 0;
                     } else {
                         nummsgs++;
                         if( Number(h) != Number(last) ){
-                            NewMessage(nummsgs)
+                            NewMessage(nummsgs);
                         }
                         position = Math.round(h - st)    
                     }
