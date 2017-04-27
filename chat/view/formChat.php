@@ -1,7 +1,10 @@
+<?php
+include_once('util/config.php');
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>Chat</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
@@ -72,7 +75,12 @@
                     
                     $("#content").html('')
                     for( var i in result ){
-                        $("#content").append("<div>"+result[i].hora +' ['+ result[i].nome +'] diz: ' + result[i].texto + "</div>")    
+                        if(result[i].nome == '<?php echo $_SESSION['nome']; ?>'){
+                            $("#content").append("<div style='background: #E5E1EB'>"+result[i].hora +' [<b>'+ result[i].nome +'</b>] diz: ' + result[i].texto + "</div>");    
+                        }else{
+                            $("#content").append("<div style='background:#FFFFFF '>"+result[i].hora +' [<b>'+ result[i].nome +'</b>] diz: ' + result[i].texto + "</div>");    
+                        }
+                            
                     }
                     var h = $('#content').innerHeight() + 100000000
                     $('#content').scrollTop( h )
