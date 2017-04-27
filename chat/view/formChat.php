@@ -63,7 +63,13 @@ include_once('util/config.php');
         }
 
 
+        var position = 0;
         function ChargerBox(){
+            
+            var h = $('#content').prop('scrollHeight');
+            var st = $('#content').scrollTop();
+            position = Math.round(h - st);
+            
             
             time = 0;  
             $.ajax({
@@ -82,8 +88,19 @@ include_once('util/config.php');
                         }
                             
                     }
-                    var h = $('#content').innerHeight() + 100000000
-                    $('#content').scrollTop( h )
+                                        
+                    var alt = $('#content').innerHeight()
+                    var h = $('#content').prop('scrollHeight');
+                    var st = $('#content').scrollTop();
+                    if(position == alt ){
+                        position = Math.round(h - st);
+                        $('#content').scrollTop( h );
+                    } else {
+                        position = Math.round(h - st)    
+                    }
+                    
+                    
+                    
             }});
         }
     </script>
