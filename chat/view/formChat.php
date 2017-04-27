@@ -88,7 +88,7 @@ include_once('util/config.php');
 
         var position = 0;
         var last = 0;
-        var nummsgs = 0;
+        var last_length = 0;
         function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
@@ -125,14 +125,14 @@ include_once('util/config.php');
                     var st = $('#content').scrollTop();
                     if(position == alt ){
                         last = h;
+                        last_length = result.lenght;
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
-                        $('#NewMessage').remove();
-                        nummsgs = 0;
+                        $('#NewMessage').remove();                        
                     } else {                        
                         if( Number(h) != Number(last) ){
-                            //nummsgs++;
-                            NewMessage(1);
+                            var nummsgs = Number(last_length - result.lenght);
+                            NewMessage(nummsgs);
                         }
                         position = Math.round(h - st)    
                     }
