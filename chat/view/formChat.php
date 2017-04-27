@@ -43,6 +43,7 @@ include_once('util/config.php');
                 url: "<?php echo 'control/usuarioController.php'; ?>", 
                 success: function(result){
                     ChargerBox();
+                    GottoDown()
                     
             }});
 
@@ -56,16 +57,20 @@ include_once('util/config.php');
                 $('#form').append("<div id='NewMessage'>NOVAS</div>")
                 $('#NewMessage').unbind('click').click(function(){
                     
-                    var alt = $('#content').innerHeight()
-                    var h = $('#content').prop('scrollHeight');
-                    var st = $('#content').scrollTop();
-
-                    last = h;                    
-                    $('#content').scrollTop( h );
+                    GottoDown()
                     $('#NewMessage').remove()
                 })
             }
             
+        }
+
+        function GottoDown(){
+            var alt = $('#content').innerHeight()
+            var h = $('#content').prop('scrollHeight');
+            var st = $('#content').scrollTop();
+
+            last = h;                    
+            $('#content').scrollTop( h );
         }
 
         var time = 0;
