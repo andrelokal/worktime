@@ -55,8 +55,7 @@ include_once('util/config.php');
                 var nummsg = (num > 1 ? num + " Novas Mensagens" : "Nova Mensagem");
                 $('#NewMessage').remove();
                 $('#form').append("<div id='NewMessage'>" + nummsg + "</div>")
-                $('#NewMessage').unbind('click').click(function(){
-                    
+                $('#NewMessage').unbind('click').click(function(){                    
                     num = 0;
                     GottoDown();
                     $('#NewMessage').remove();
@@ -130,9 +129,9 @@ include_once('util/config.php');
                         $('#content').scrollTop( h );
                         $('#NewMessage').remove();
                         nummsgs = 0;
-                    } else {
-                        nummsgs++;
+                    } else {                        
                         if( Number(h) != Number(last) ){
+                            nummsgs++;
                             NewMessage(nummsgs);
                         }
                         position = Math.round(h - st)    
