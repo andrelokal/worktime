@@ -50,6 +50,24 @@ include_once('util/config.php');
             $('#texto').focus();
         }
 
+        function NewMessage(){
+            if( !$('#NewMessage').lenght ){
+                $('#NewMessage').remove();
+                $('#form').append("<div id='NewMessage'>NOVAS</div>")
+                $('#NewMessage').unbind('click').click(function(){
+                    
+                    var alt = $('#content').innerHeight()
+                    var h = $('#content').prop('scrollHeight');
+                    var st = $('#content').scrollTop();
+
+                    last = h;                    
+                    $('#content').scrollTop( h );
+                    $('#NewMessage').remove()
+                })
+            }
+            
+        }
+
         var time = 0;
         var timer = 2;
 
@@ -64,6 +82,7 @@ include_once('util/config.php');
 
 
         var position = 0;
+        var last = 0;
         function ChargerBox(){
             
             var h = $('#content').prop('scrollHeight');
@@ -93,9 +112,13 @@ include_once('util/config.php');
                     var h = $('#content').prop('scrollHeight');
                     var st = $('#content').scrollTop();
                     if(position == alt ){
+                        last = h;
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
                     } else {
+                        if( Number(h) != Number(last) ){
+                            NewMessage()
+                        }
                         position = Math.round(h - st)    
                     }
                     
