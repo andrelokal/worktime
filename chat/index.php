@@ -2,7 +2,10 @@
 include_once('util/config.php');
 
 ?>
+
+
 <link href="chat.css" rel="stylesheet" type="text/css" />
+
 <?php
 
 if(@$_SESSION['sala']){

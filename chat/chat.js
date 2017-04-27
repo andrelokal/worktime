@@ -2,7 +2,7 @@ var showchat = false;
 
 function callchat() {
 	$('#chat').remove();
-	$('body').append( "<div id='chat'><div class='header'><div style='padding-right:5px; cursor:pointer'>Fechar</div></div><iframe width=100% height=100% frameborder=0 src='chat/' framescroll='no' ></iframe></div>" )
+	$('body').append( "<div id='chat'><div class='header'><div style='padding-right:5px; cursor:pointer'>Fechar</div></div><iframe width=100% height=95% frameborder=0 src='chat/' framescroll='no' ></iframe></div>" )
 	var css = {	position: 'absolute',
 				bottom: '0px',
 				width: '250px',

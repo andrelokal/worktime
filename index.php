@@ -64,7 +64,7 @@ function dias_feriados($ano = null)
                           date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa - 2 ,  $ano_pascoa)) => 'PAIXAO',
                           date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa     ,  $ano_pascoa)) => 'PASCOA',
                           date("Ymd", mktime(0, 0, 0, 4,  21,  $ano)) => 'TIRADENTES',
-                          date("Ymd", mktime(0, 0, 0, 5,  1,   $ano)) => '1o.MAIO',
+                          date("Ymd", mktime(0, 0, 0, 5,  1,   $ano)) => '1&ordm; DE MAIO',
                           date("Ymd", mktime(0, 0, 0, $mes_pascoa, $dia_pascoa + 60,  $ano_pascoa)) => 'CORPUS CHRISTI',
                           date("Ymd", mktime(0, 0, 0, 9,  7,   $ano)) => 'INDEPENDENCIA',
                           date("Ymd", mktime(0, 0, 0, 10,  12, $ano)) => 'N.S.APARECIDA',
@@ -84,8 +84,8 @@ function dias_feriados($ano = null)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Idleness Center</title>
-  <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css"> -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
   <script src="jquery_1.12.4/jquery-1.12.4.js"></script>
   <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>  
   <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
@@ -524,7 +524,7 @@ function dias_feriados($ano = null)
                                 $gaugeFeriado = $('#payloadGaugeFeriado').dynameter({
                                     label: '<?php echo $feriados_label[date("Ymd", $a)]; ?>',
                                     value: <?php echo $dias ; ?>,
-                                    unit: '<?php echo ($dias == 1 ? 'dia' : 'dias' ); ?> feriado',
+                                    unit: '<?php echo ($dias == 1 ? 'dia' : 'dias' ); ?> p/ feriado',
                                     min: 5,
                                     max: 0
                                 });
