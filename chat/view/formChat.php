@@ -50,10 +50,10 @@ include_once('util/config.php');
             $('#texto').focus();
         }
 
-        function NewMessage(){
+        function NewMessage( text ){
             if( !$('#NewMessage').lenght ){
                 $('#NewMessage').remove();
-                $('#form').append("<div id='NewMessage'>NOVAS</div>")
+                $('#form').append("<div id='NewMessage'>"+text+"</div>")
                 $('#NewMessage').unbind('click').click(function(){
                     
                     GottoDown()
@@ -87,12 +87,13 @@ include_once('util/config.php');
 
         var position = 0;
         var last = 0;
+        var last_len = 0;
         function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
             var st = $('#content').scrollTop();
             position = Math.round(h - st);
-            
+            var nummsg = 0;
             
             time = 0;  
             $.ajax({
@@ -122,13 +123,15 @@ include_once('util/config.php');
 
                     var st = $('#content').scrollTop();
                     if(position == alt ){
+                        last_len = result.length;
                         last = h;
                         position = Math.round(h - st);
                         $('#content').scrollTop( h );
                         $('#NewMessage').remove()
                     } else {
                         if( Number(h) != Number(last) ){
-                            NewMessage()
+                            nummsg = Number(result.length) - Number(last_len);
+                            NewMessage( "("+nummsg+") Novas" )
                         }
                         position = Math.round(h - st)    
                     }
