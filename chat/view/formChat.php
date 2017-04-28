@@ -102,13 +102,22 @@ include_once('util/config.php');
                 data: { 'action':'3' },  
                 url: "<?php echo 'control/usuarioController.php'; ?>", 
                 success: function(result){
-                    
+
                     $("#content").html('')
                     for( var i in result ){
+                        
+                    var color = '#000000';
+                    
+                    if(result[i].cor){
+                       color = result[i].cor; 
+                    }
+                        
+                        
+                        
                         if(result[i].nome == '<?php echo $_SESSION['nome']; ?>'){
-                            $("#content").append("<div style='background: #E5E1EB'>"+result[i].hora +' [<b>'+ result[i].nome +'</b>] diz: ' + result[i].texto + "</div>");    
+                            $("#content").append("<div style='background: #E5E1EB'>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
                         }else{
-                            $("#content").append("<div style='background:#FFFFFF '>"+result[i].hora +' [<b>'+ result[i].nome +'</b>] diz: ' + result[i].texto + "</div>");    
+                            $("#content").append("<div style='background:#FFFFFF '>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
                         }
                             
                     }

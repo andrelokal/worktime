@@ -16,9 +16,11 @@ switch ($action) {
     
     case 1: // Logar no chat
     
-        $_SESSION['nome'] = $_POST['nome'];
-        $_SESSION['sala'] = $_POST['sala'];
+        $_SESSION['nome']  = $_POST['nome'];
+        $_SESSION['sala']  = $_POST['sala'];
         $_SESSION['senha'] = $_POST['senha'];
+        $_SESSION['cor']   = $_POST['cor'];
+        
         header('Location: ../index.php');
           
     break;
@@ -27,6 +29,7 @@ switch ($action) {
         
         $usuario = new Usuario();
 
+        $usuario->setCor($_SESSION['cor']);
         $usuario->setNome($usuario->striptags($_SESSION['nome']));
         $usuario->setTexto($usuario->striptags($_POST['form'][1]['value']));
         $usuario->setSala($usuario->striptags($_SESSION['sala'].$_SESSION['senha']));

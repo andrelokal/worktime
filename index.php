@@ -84,7 +84,7 @@ function dias_feriados($ano = null)
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Idleness Center</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="jquery-ui-1.12.1.custom/jquery-ui.css">
   
   <script src="jquery_1.12.4/jquery-1.12.4.js"></script>
   <script src="jquery-ui-1.12.1.custom/jquery-ui.js"></script>  
