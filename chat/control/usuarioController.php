@@ -57,7 +57,7 @@ switch ($action) {
         
         $resArray = $usuario->getData();
         $countArray = count($resArray);        
-        $resArray2 = array_slice($resArray, ($countArray > 100) ? ($countArray-100) : 1);
+        $resArray2 = array_slice($resArray, ($countArray > 200) ? ($countArray-200) : 1);
         foreach($resArray2 as $value){
             if(json_decode($value,true) != null){
                 $data[] = json_decode($value,true);    
