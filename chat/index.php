@@ -1,3 +1,9 @@
+
+<?php
+include_once('util/config.php');
+
+?>
+
 <script>
     //Google Analiticts
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -9,11 +15,6 @@
   ga('send', 'pageview');
 
 </script>
-<?php
-include_once('util/config.php');
-
-?>
-
 
 <link href="chat.css" rel="stylesheet" type="text/css" />
 
