@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+    session_start();    
+}
+
 
 //Configuração de Ambiente
 ini_set('short_open_tag','1');
