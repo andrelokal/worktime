@@ -539,21 +539,31 @@ function dias_feriados($ano = null)
                $('.progress-bar').removeClass('progress-bar-danger');
 
                if( p >= 90 ){
-                  $('.progress-bar').addClass('progress-bar-success');
+                  $('.progress-bar').addClass('progress-bar-success');                  
+                  $('#emojiL').html('<img src="emojis/feliz.png" height="30">');
+                  $('#emojiR').html('<img src="emojis/feliz.png" height="30">');
                }
                if( p < 90 ){
                   $('.progress-bar').addClass('progress-bar-info');
+                  $('#emojiL').html('<img src="emojis/alegre.png" height="30">');
+                  $('#emojiR').html('<img src="emojis/alegre.png" height="30">');
                }
                if( p < 50 ){
                   $('.progress-bar').addClass('progress-bar-warning');
+                  $('#emojiL').html('<img src="emojis/mediano.png" height="30">');
+                  $('#emojiR').html('<img src="emojis/mediano.png" height="30">');
                } 
                if( p < 25 ){
                   $('.progress-bar').addClass('progress-bar-danger');
+                  $('#emojiL').html('<img src="emojis/sono.png" height="30">');
+                  $('#emojiR').html('<img src="emojis/sono.png" height="30">');
                }
 
                if( Math.round(p) == 100 ){
-                  $('.progress-bar .icon').removeClass('working')
-                  $('.progress-bar .icon').addClass('beer')
+                  $('.progress-bar .icon').removeClass('working');
+                  $('.progress-bar .icon').addClass('beer');
+                  $('#emojiL').html('<img src="emojis/thuglife.png" height="30">');
+                  $('#emojiR').html('<img src="emojis/thuglife.png" height="30">');
                }
 
                $('.list-group-item.porc').html(Math.round(p)+'% concluido');
@@ -647,7 +657,9 @@ function dias_feriados($ano = null)
             <ul class="list-group">
               <li class="list-group-item">Fim do expediente: <b class="end">17:45</b> </li>
               <li class="list-group-item">Hora atual: <span id="Clock">00:00:00</span></li>
-              <li class="list-group-item restante">Faltando: <span id="contador"></span></li>
+              <li class="list-group-item restante">
+                <span id="emojiL"></span> Faltando: <span id="contador"></span> 
+                <span id="emojiR"></span></li>
               <li class="list-group-item">
 
                 <div class="progress">
