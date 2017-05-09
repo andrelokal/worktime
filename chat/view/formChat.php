@@ -208,8 +208,7 @@ include_once('model/Emogi.php');
     <div style="float: left" id='emotions'>
         <?php                                
             $emogi = new Emogi();
-            echo $emogi->getEmogi(':):D(A)lalala(!)(t+):S(Y)(N)zzz:P8Do0(palmas):@(ran)(yeah)_|_;(kkk(dah):(:|*_*(rage)');
-            
+            echo $emogi->getEmogi(':):D(A)lalala(!)(t+):S(Y)(N)zzz:P8Do0(palmas):@(ran)(yeah)_|_;(kkk(dah):(:|*_*(rage)s2(heart_eyes)(kissing_heart)(pensive)(flushed)');
         ?>
     </div>
     

@@ -33,7 +33,12 @@ class Emogi
                        ":(", 
                        ":|",
                        "*_*",
-                       "(rage)");
+                       "(rage)",
+                       "s2",
+                       "(heart_eyes)",
+                       "(kissing_heart)",
+                       "(pensive)",
+                       "(flushed)");
         $emoticons = array("smile", 
                            "smiley", 
                            "innocent", 
@@ -58,7 +63,13 @@ class Emogi
                            "disappointed",
                            "no_mouth",
                            "astonished",
-                           "rage");
+                           "rage",
+                           "heart",
+                           "heart_eyes",
+                           "kissing_heart",
+                           "pensive",
+                           "flushed"
+                           );
         $post = nl2br($post);
         for($i = 0; $i < count($emoticons); $i++)
         {
