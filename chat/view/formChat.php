@@ -127,6 +127,10 @@ include_once('model/Emogi.php');
         var position = 0;
         var last = 0;
         var last_len = 0;
+        var last_hour = 0;
+        var last_hour2 = 0;
+        var last_msg = '';
+        var last_nome = '';
         function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
@@ -145,21 +149,32 @@ include_once('model/Emogi.php');
                     $("#content").html('')
                     for( var i in result ){
                         
-                    var color = '#000000';
-                    
-                    if(result[i].cor){
-                       color = result[i].cor; 
-                    }
+                        var color = '#000000';
                         
-                        
-                        
-                        if(result[i].nome == '<?php echo $_SESSION['nome']; ?>'){
-                            $("#content").append("<div style='background: #E5E1EB'>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
-                        }else{
-                            $("#content").append("<div style='background:#FFFFFF '>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
+                        if(result[i].cor){
+                           color = result[i].cor; 
                         }
                             
+                            
+                            
+                            if(result[i].nome == '<?php echo $_SESSION['nome']; ?>'){
+                                $("#content").append("<div style='background: #E5E1EB'>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
+                            }else{
+                                $("#content").append("<div style='background:#FFFFFF '>"+result[i].hora +' [<span style="color: '+ color +'"><b>'+ result[i].nome +'</b></span>] diz: ' + result[i].texto + "</div>");    
+                            }
+                        
+                        last_hour = result[i].hora;
+                        last_msg = result[i].texto;
+                        last_nome = result[i].nome;    
                     }
+                    
+                    if(last_hour != last_hour2){
+                        if($('#notify').is(':checked')){
+                            notifyMe(last_nome,last_msg,'chatting.png');    
+                        }
+                        last_hour2 = last_hour;    
+                    }
+                    
                                         
                     var alt = $('#content').innerHeight()
                     var h = $('#content').prop('scrollHeight');
@@ -179,17 +194,62 @@ include_once('model/Emogi.php');
                     } else {
                         if( Number(h) != Number(last) ){
                             nummsg = Number(result.length) - Number(last_len);
-                            NewMessage( "("+nummsg+") Novas" )
+                            NewMessage( "("+nummsg+") Novas" );
                         }
                         position = Math.round(h - st)    
                     }
 
 
-                    
+                //teste();    
                     
                     
             }});
         }
+
+        function notifyMe(titleMsg,bodyMsg,iconAlert) {
+            
+            if(document.hasFocus() == false){
+                
+                  // Let's check if the browser supports notifications
+                  if (!("Notification" in window)) {
+                    //alert("This browser does not support desktop notification");
+                  }
+
+                  // Let's check whether notification permissions have already been granted
+                  else if (Notification.permission === "granted") {
+                    // If it's okay let's create a notification
+                                var notification = new Notification(titleMsg, {
+                                    dir: 'ltr',
+                                    body: bodyMsg,
+                                    icon: iconAlert
+                                })
+                  }
+
+                  // Otherwise, we need to ask the user for permission
+                  else if (Notification.permission !== 'denied') {
+                    Notification.requestPermission(function (permission) {
+                      // If the user accepts, let's create a notification
+                      if (permission === "granted") {
+                                var notification = new Notification(titleMsg, {
+                                    dir: 'ltr',
+                                    body: bodyMsg,
+                                    icon: iconAlert
+                                })
+                      }
+                    });
+                  }
+
+                  // At last, if the user has denied notifications, and you 
+                  // want to be respectful there is no need to bother them any more.
+                
+            }
+
+        }
+
+        
+        
+        
+        
         
         
     </script>
@@ -202,6 +262,7 @@ include_once('model/Emogi.php');
         <input type="text" name="texto" id="texto" />
     </div>
     <div style="width: 100px; float: left">
+        <input type="checkbox" id="notify" name="notify" value="1" title="notificar mensagens">
         <input type="button" id="button" value="Enviar">
         <input type="button" id="sair" value="sair">
     </div>

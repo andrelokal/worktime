@@ -61,7 +61,7 @@ class Usuario{
 		
 			if($this->sala != ''){
 					$objArq = new ArqLog($this->sala, $path);
-					$data = array('nome'=> $this->nome, 'texto'=> $this->texto,'hora'=>date('H:i'),'cor'=>$this->cor);
+					$data = array('nome'=> $this->nome, 'texto'=> $this->texto,'hora'=>date('H:i:s'),'cor'=>$this->cor);
 					$objArq->setData($data);
 					return true;
 			}else{
