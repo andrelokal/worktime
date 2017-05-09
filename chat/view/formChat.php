@@ -1,6 +1,7 @@
 
 <?php
 include_once('util/config.php');
+include_once('model/Emogi.php');
 ?>
 <script>
     //Google Analiticts
@@ -16,9 +17,23 @@ include_once('util/config.php');
 <!DOCTYPE html>
 <html>
 <head>
+    <style type="">
+    
+        #emotions{
+            background: url('images/smile.png');
+            background-repeat: no-repeat;
+            width: 20px;
+            height: 20px;            
+        } 
+    
+        #emotions img{
+            display: none;
+        }
+                
+    </style>
     <title>Chat</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
     <script>
 
         $( function() {
@@ -32,7 +47,10 @@ include_once('util/config.php');
                 if(e.which == 13){
                     sendMessage();
                     return false;    
-                }    
+                }  
+                $('#emotions').css('width','20px')
+                $('#emotions').find('img').css('display','none')
+                  
             });
             
             
@@ -42,6 +60,15 @@ include_once('util/config.php');
                 });
             });
             
+            $('#emotions img').click(function(){
+                var word = $(this).attr('word');
+                $('#texto').val( $('#texto').val() + " "+word )
+            })
+            
+            $('#emotions').click(function(){                
+                $(this).css('width','100%')
+                $(this).find('img').css('display','inline')
+            })
              
         });
 
@@ -163,15 +190,30 @@ include_once('util/config.php');
                     
             }});
         }
+        
+        
     </script>
 </head>
 <body onload="ChargerBox(); crono();">
 <div id="content" ></div>
 <form method="post" id="form">
-    <input type="hidden" name="action" value="2" />
-    <input type="text" name="texto" id="texto" />
-    <input type="button" id="button" value="Enviar">
-    <input type="button" id="sair" value="sair">
+    <div>
+        <input type="hidden" name="action" value="2" />
+        <input type="text" name="texto" id="texto" />
+    </div>
+    <div style="width: 100px; float: left">
+        <input type="button" id="button" value="Enviar">
+        <input type="button" id="sair" value="sair">
+    </div>
+    <div style="float: left" id='emotions'>
+        <?php                                
+            $emogi = new Emogi();
+            echo $emogi->getEmogi(':):D(A)lalala(!)(t+):S(Y)(N)zzz:P8Do0(palmas):@(ran)(yeah)_|_;(kkk(dah):(:|*_*(rage)');
+            
+        ?>
+    </div>
+    
+    
 </form>
 
 </body>

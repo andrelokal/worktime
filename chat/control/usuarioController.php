@@ -58,9 +58,13 @@ switch ($action) {
         $resArray = $usuario->getData();
         $countArray = count($resArray);        
         $resArray2 = array_slice($resArray, ($countArray > 200) ? ($countArray-200) : 1);
+        $emogi = new Emogi();
         foreach($resArray2 as $value){
             if(json_decode($value,true) != null){
-                $data[] = json_decode($value,true);    
+                $value = json_decode($value,true);
+                $value['texto'] = $emogi->getEmogi($value['texto']); 
+                 
+                $data[] = $value;/*json_decode($value,true);*/    
             }  
         }
         echo json_encode($data);
