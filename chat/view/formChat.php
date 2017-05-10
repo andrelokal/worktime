@@ -133,6 +133,8 @@ include_once('model/Emogi.php');
         var last_hour2 = 0;
         var last_msg = '';
         var last_nome = '';
+        var audio = new Audio('util/soundNotify.mp3');
+        
         function ChargerBox( gotodown ){
             
             var h = $('#content').prop('scrollHeight');
@@ -245,11 +247,9 @@ include_once('model/Emogi.php');
                       }
                     });
                   }
-
-                  var audio = new Audio('util/soundNotify.mp3');
-                  audio.play();
                   // At last, if the user has denied notifications, and you 
-                  // want to be respectful there is no need to bother them any more.
+                  // want to be respectful there is no need to bother them any more.                 
+                  audio.play();
                 
             }
 
@@ -265,28 +265,25 @@ include_once('model/Emogi.php');
 </head>
 <body onload="ChargerBox(); crono();">
 <div id="content" ></div>
-<form method="post" id="form">
-    <div>
-        <input type="hidden" name="action" value="2" />
-        <input type="text" name="texto" id="texto" />
-    </div>
-    <div style="width: 100px; float: left">
-        <input type="checkbox" id="notify" name="notify" value="1" title="notificar mensagens">
-        <input type="button" id="button" value="Enviar">
-        <input type="button" id="sair" value="sair">
-    </div>
-    <div style="float: left" id='emotions'>
-        <?php                                
-            $emogi = new Emogi();
-            echo $emogi->getEmogi(':):D(A)lalala(!)(t+):S(Y)(N)zzz:P8Do0(palmas):@(ran)(yeah)_|_;(kkk(dah):(:|*_*(rage)s2(heart_eyes)(kissing_heart)(pensive)(flushed)');
-        ?>
-    </div>
-    
-    
-</form>
-<audio id="soundFX">
-    <source src="util/soundNotify.mp3"></source>
-</audio>
+    <form method="post" id="form">
+        <div>
+            <input type="hidden" name="action" value="2" />
+            <input type="text" name="texto" id="texto" />
+        </div>
+        <div style="width: 100px; float: left">
+            <input type="checkbox" id="notify" name="notify" value="1" title="notificar mensagens">
+            <input type="button" id="button" value="Enviar">
+            <input type="button" id="sair" value="sair">
+        </div>
+        <div style="float: left" id='emotions'>
+            <?php                                
+                $emogi = new Emogi();
+                echo $emogi->getEmogi(':):D(A)lalala(!)(t+):S(Y)(N)zzz:P8Do0(palmas):@(ran)(yeah)_|_;(kkk(dah):(:|*_*(rage)s2(heart_eyes)(kissing_heart)(pensive)(flushed)');
+            ?>
+        </div>
+        
+        
+    </form>
 </body>
 </html>
 
