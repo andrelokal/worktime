@@ -224,7 +224,8 @@ include_once('model/Emogi.php');
                                 var notification = new Notification(titleMsg, {
                                     dir: 'ltr',
                                     body: bodyMsg,
-                                    icon: iconAlert
+                                    icon: iconAlert,
+                                    vibrate: [200, 100, 200]
                                 })
                   }
 
@@ -236,7 +237,8 @@ include_once('model/Emogi.php');
                                 var notification = new Notification(titleMsg, {
                                     dir: 'ltr',
                                     body: bodyMsg,
-                                    icon: iconAlert
+                                    icon: iconAlert,
+                                    vibrate: [200, 100, 200]
                                 })
                       }
                     });
