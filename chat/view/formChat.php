@@ -241,6 +241,7 @@ include_once('model/Emogi.php');
                                   event.preventDefault(); // prevent the browser from focusing the Notification's tab
                                   myWindow = window.open(window.location.href);
                                   myWindow.close();
+                                  notification.close();
                                 }
                   }
 
@@ -259,6 +260,7 @@ include_once('model/Emogi.php');
                                   event.preventDefault(); // prevent the browser from focusing the Notification's tab
                                   myWindow = window.open(window.location.href);
                                   myWindow.close();
+                                  notification.close();
                                 }
                       }
                     });
