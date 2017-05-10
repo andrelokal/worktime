@@ -226,7 +226,8 @@ include_once('model/Emogi.php');
                                     body: bodyMsg,
                                     icon: iconAlert,
                                     sound: 'util/soundNotify.mp3'
-                                })
+                                });
+                                notification.sound;
                   }
 
                   // Otherwise, we need to ask the user for permission
@@ -239,7 +240,8 @@ include_once('model/Emogi.php');
                                     body: bodyMsg,
                                     icon: iconAlert,
                                     sound: 'util/soundNotify.mp3'
-                                })
+                                });
+                                notification.sound
                       }
                     });
                   }
