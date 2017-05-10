@@ -116,14 +116,15 @@ include_once('model/Emogi.php');
                     flags.window = 'off';
                     $(this).removeClass('enabled')
                     $(this).addClass('disabled')
-
-                    if (Notification.permission !== "granted") {             
-                        Notification.requestPermission();
-                    }
                 } else {
                     flags.window = 'on';
                     $(this).removeClass('disabled')
                     $(this).addClass('enabled')
+                    
+                    //Solicita permissão de notificação no navegador
+                    if (Notification.permission !== "granted") {             
+                        Notification.requestPermission();
+                    }
                 }
 
                 RefreshFlag()
