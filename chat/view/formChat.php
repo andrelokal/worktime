@@ -246,8 +246,8 @@ include_once('model/Emogi.php');
                     });
                   }
 
-                  var soundFx = $( '#soundFx' );
-                  soundFx[0].play();
+                  var audio = new Audio('util/soundNotify.mp3');
+                  audio.play();
                   // At last, if the user has denied notifications, and you 
                   // want to be respectful there is no need to bother them any more.
                 
