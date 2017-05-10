@@ -71,7 +71,15 @@ include_once('model/Emogi.php');
                 $(this).css('width','100%')
                 $(this).find('img').css('display','inline')
             })
-             
+            
+            $('#notify').change(function(){     
+                if($(this).is(':checked')){    
+                    if (Notification.permission !== "granted") {             
+                        Notification.requestPermission();
+                    }
+                }
+            });
+
         });
 
         function sendMessage(){
