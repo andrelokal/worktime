@@ -237,7 +237,11 @@ include_once('model/Emogi.php');
                                     icon: iconAlert,
                                     //sound: 'util/soundNotify.mp3'
                                 });
-                                //notification.sound;
+                                notification.onclick = function(event) {
+                                  event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                                  myWindow = window.open(window.location.href);
+                                  myWindow.close();
+                                }
                   }
 
                   // Otherwise, we need to ask the user for permission
@@ -251,7 +255,11 @@ include_once('model/Emogi.php');
                                     icon: iconAlert,
                                     //sound: 'util/soundNotify.mp3'
                                 });
-                                //notification.sound
+                                notification.onclick = function(event) {
+                                  event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                                  myWindow = window.open(window.location.href);
+                                  myWindow.close();
+                                }
                       }
                     });
                   }
