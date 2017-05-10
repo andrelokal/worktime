@@ -225,9 +225,9 @@ include_once('model/Emogi.php');
                                     dir: 'ltr',
                                     body: bodyMsg,
                                     icon: iconAlert,
-                                    sound: 'util/soundNotify.mp3'
+                                    //sound: 'util/soundNotify.mp3'
                                 });
-                                notification.sound;
+                                //notification.sound;
                   }
 
                   // Otherwise, we need to ask the user for permission
@@ -239,13 +239,15 @@ include_once('model/Emogi.php');
                                     dir: 'ltr',
                                     body: bodyMsg,
                                     icon: iconAlert,
-                                    sound: 'util/soundNotify.mp3'
+                                    //sound: 'util/soundNotify.mp3'
                                 });
-                                notification.sound
+                                //notification.sound
                       }
                     });
                   }
 
+                  var soundFx = $( '#soundFx' );
+                  soundFx[0].play();
                   // At last, if the user has denied notifications, and you 
                   // want to be respectful there is no need to bother them any more.
                 
@@ -282,7 +284,9 @@ include_once('model/Emogi.php');
     
     
 </form>
-
+<audio id="soundFX">
+    <source src="util/soundNotify.mp3"></source>
+</audio>
 </body>
 </html>
 
