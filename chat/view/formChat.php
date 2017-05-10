@@ -173,7 +173,7 @@ include_once('model/Emogi.php');
                     if(last_hour != last_hour2){
                         if($('#notify').is(':checked')){
                             //notifyMe(last_nome,last_msg,'chatting.png');
-                            notifyMe(last_nome,'Enviou uma Nova Mensagem','chatting.png');    
+                            notifyMe(last_nome,'enviou uma nova mensagem','chatting.png');    
                         }
                         last_hour2 = last_hour;    
                     }
