@@ -181,10 +181,8 @@ include_once('model/Emogi.php');
                     }
                     
                     if(last_hour != last_hour2){
-                        if($('#notify').is(':checked')){
-                            //notifyMe(last_nome,last_msg,'chatting.png');
-                            notifyMe(last_nome,'enviou uma nova mensagem','chatting.png');    
-                        }
+                        //notifyMe(last_nome,last_msg,'chatting.png');
+                        notifyMe(last_nome,'enviou uma nova mensagem','chatting.png');    
                         last_hour2 = last_hour;    
                     }
                     
@@ -222,53 +220,57 @@ include_once('model/Emogi.php');
         function notifyMe(titleMsg,bodyMsg,iconAlert) {
             
             if(document.hasFocus() == false){
-                
-                  // Let's check if the browser supports notifications
-                  if (!("Notification" in window)) {
-                    //alert("This browser does not support desktop notification");
-                  }
-
-                  // Let's check whether notification permissions have already been granted
-                  else if (Notification.permission === "granted") {
-                    // If it's okay let's create a notification
-                                var notification = new Notification(titleMsg, {
-                                    dir: 'ltr',
-                                    body: bodyMsg,
-                                    icon: iconAlert,
-                                    //sound: 'util/soundNotify.mp3'
-                                });
-                                notification.onclick = function(event) {
-                                  event.preventDefault(); // prevent the browser from focusing the Notification's tab
-                                  myWindow = window.open(window.location.href);
-                                  myWindow.close();
-                                  notification.close();
-                                }
-                  }
-
-                  // Otherwise, we need to ask the user for permission
-                  else if (Notification.permission !== 'denied') {
-                    Notification.requestPermission(function (permission) {
-                      // If the user accepts, let's create a notification
-                      if (permission === "granted") {
-                                var notification = new Notification(titleMsg, {
-                                    dir: 'ltr',
-                                    body: bodyMsg,
-                                    icon: iconAlert,
-                                    //sound: 'util/soundNotify.mp3'
-                                });
-                                notification.onclick = function(event) {
-                                  event.preventDefault(); // prevent the browser from focusing the Notification's tab
-                                  myWindow = window.open(window.location.href);
-                                  myWindow.close();
-                                  notification.close();
-                                }
+                  
+                if($('#notify').is(':checked')){
+                      // Let's check if the browser supports notifications
+                      if (!("Notification" in window)) {
+                        //alert("This browser does not support desktop notification");
                       }
-                    });
-                  }
-                  // At last, if the user has denied notifications, and you 
-                  // want to be respectful there is no need to bother them any more.                 
-                  audio.play();
-                
+
+                      // Let's check whether notification permissions have already been granted
+                      else if (Notification.permission === "granted") {
+                        // If it's okay let's create a notification
+                                    var notification = new Notification(titleMsg, {
+                                        dir: 'ltr',
+                                        body: bodyMsg,
+                                        icon: iconAlert,
+                                        //sound: 'util/soundNotify.mp3'
+                                    });
+                                    notification.onclick = function(event) {
+                                      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                                      myWindow = window.open(window.location.href);
+                                      myWindow.close();
+                                      notification.close();
+                                    }
+                      }
+
+                      // Otherwise, we need to ask the user for permission
+                      else if (Notification.permission !== 'denied') {
+                        Notification.requestPermission(function (permission) {
+                          // If the user accepts, let's create a notification
+                          if (permission === "granted") {
+                                    var notification = new Notification(titleMsg, {
+                                        dir: 'ltr',
+                                        body: bodyMsg,
+                                        icon: iconAlert,
+                                        //sound: 'util/soundNotify.mp3'
+                                    });
+                                    notification.onclick = function(event) {
+                                      event.preventDefault(); // prevent the browser from focusing the Notification's tab
+                                      myWindow = window.open(window.location.href);
+                                      myWindow.close();
+                                      notification.close();
+                                    }
+                          }
+                        });
+                      }
+                      // At last, if the user has denied notifications, and you 
+                      // want to be respectful there is no need to bother them any more.
+                }                 
+                  
+                if($('#notifySound').is(':checked')){
+                    audio.play();    
+                }  
             }
 
         }
@@ -288,8 +290,9 @@ include_once('model/Emogi.php');
             <input type="hidden" name="action" value="2" />
             <input type="text" name="texto" id="texto" />
         </div>
-        <div style="width: 100px; float: left">
-            <input type="checkbox" id="notify" name="notify" value="1" title="notificar mensagens">
+        <div style="width: 120px; float: left">
+            <input type="checkbox" id="notify" name="notify" value="1" style="background-color:#00BFFF;" title="mostrar nova mensagem na barra de tarefas">
+            <input type="checkbox" id="notifySound" name="notifySound" value="1" style="background-color:#FF0000;" title="emitir som quando houver uma nova mensagem">
             <input type="button" id="button" value="Enviar">
             <input type="button" id="sair" value="sair">
         </div>
