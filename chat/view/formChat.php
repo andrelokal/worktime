@@ -29,12 +29,50 @@ include_once('model/Emogi.php');
         #emotions img{
             display: none;
         }
+
+
+        .icon{
+            width: 16px;
+            height: 16px;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            display: block;
+            float: left;
+            margin: 5px;
+        }
+
+        .icon.window.enabled{
+            background-image: url('window-icon.png');
+        }
+
+        .icon.window.disabled{
+            background-image: url('window-remove-icon.png');
+        }
+
+        .icon.sound.enabled{
+            background-image: url('sound-low-icon.png');
+        }
+
+        .icon.sound.disabled{
+            background-image: url('sound-delete-icon.png');
+        }
                 
     </style>
     <title>Chat</title>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
-    <script>
+    <script>    
+
+        var flagSotarage = localStorage.getItem('flag');
+        var flags = {   window : 'off',
+                        sound : 'off' }
+        if( flagSotarage ){
+            flags = JSON.parse( flagSotarage );
+        }
+
+        function RefreshFlag(){
+            localStorage.setItem('flag', JSON.stringify(flags) );
+        }
 
         $( function() {
             
@@ -72,13 +110,57 @@ include_once('model/Emogi.php');
                 $(this).find('img').css('display','inline')
             })
             
-            $('#notify').change(function(){     
-                if($(this).is(':checked')){    
+            $('#notify').click(function(){    
+
+                if($(this).hasClass('enabled')){ 
+                    flags.window = 'off';
+                    $(this).removeClass('enabled')
+                    $(this).addClass('disabled')
+
                     if (Notification.permission !== "granted") {             
                         Notification.requestPermission();
                     }
+                } else {
+                    flags.window = 'on';
+                    $(this).removeClass('disabled')
+                    $(this).addClass('enabled')
                 }
+
+                RefreshFlag()
             });
+
+            $('#notifySound').click(function(){
+                if($(this).hasClass('enabled')){ 
+                    flags.sound = 'off';
+                    $(this).removeClass('enabled')
+                    $(this).addClass('disabled')
+                } else {
+                    flags.sound = 'on';
+                    $(this).removeClass('disabled')
+                    $(this).addClass('enabled')
+                }
+
+                RefreshFlag()
+            });
+
+            if( flagSotarage ){
+                if( flags.sound == 'on' ){
+                   $('#notifySound').removeClass('disabled') 
+                   $('#notifySound').addClass('enabled')
+                } else {
+                    $('#notifySound').removeClass('enabled') 
+                   $('#notifySound').addClass('disabled')
+                }
+
+
+                if( flags.window == 'on' ){
+                   $('#notify').removeClass('disabled') 
+                   $('#notify').addClass('enabled')
+                } else {
+                    $('#notify').removeClass('enabled') 
+                   $('#notify').addClass('disabled')
+                }
+            }
 
         });
 
@@ -221,7 +303,7 @@ include_once('model/Emogi.php');
             
             if(document.hasFocus() == false){
                   
-                if($('#notify').is(':checked')){
+                if($('#notify').hasClass('enabled')){
                       // Let's check if the browser supports notifications
                       if (!("Notification" in window)) {
                         //alert("This browser does not support desktop notification");
@@ -268,16 +350,12 @@ include_once('model/Emogi.php');
                       // want to be respectful there is no need to bother them any more.
                 }                 
                   
-                if($('#notifySound').is(':checked')){
+                if($('#notifySound').hasClass('enabled')){
                     audio.play();    
                 }  
             }
 
-        }
-
-        
-        
-        
+        }    
         
         
         
@@ -290,9 +368,13 @@ include_once('model/Emogi.php');
             <input type="hidden" name="action" value="2" />
             <input type="text" name="texto" id="texto" />
         </div>
-        <div style="width: 120px; float: left">
-            <input type="checkbox" id="notify" name="notify" value="1" style="background-color:#00BFFF;" title="mostrar nova mensagem na barra de tarefas">
-            <input type="checkbox" id="notifySound" name="notifySound" value="1" style="background-color:#FF0000;" title="emitir som quando houver uma nova mensagem">
+        <div style="width: 150px; float: left">
+            
+            <!-- <input type="checkbox" id="notify" name="notify" value="1" style="background-color:#00BFFF;" title="mostrar nova mensagem na barra de tarefas">
+            <input type="checkbox" id="notifySound" name="notifySound" value="1" style="background-color:#FF0000;" title="emitir som quando houver uma nova mensagem"> -->
+            <div class="icon window disabled" id="notify">&nbsp;</div>
+            <div class="icon sound disabled" id="notifySound">&nbsp;</div>
+
             <input type="button" id="button" value="Enviar">
             <input type="button" id="sair" value="sair">
         </div>

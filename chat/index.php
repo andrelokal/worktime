@@ -16,7 +16,7 @@ include_once('util/config.php');
 
 </script>
 
-<link href="chat.css" rel="stylesheet" type="text/css" />
+<link href="chat.css?1" rel="stylesheet" type="text/css" />
 
 <?php
 
