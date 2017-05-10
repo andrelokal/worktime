@@ -225,7 +225,7 @@ include_once('model/Emogi.php');
                                     dir: 'ltr',
                                     body: bodyMsg,
                                     icon: iconAlert,
-                                    vibrate: [200, 100, 200]
+                                    sound: 'util/soundNotify.mp3'
                                 })
                   }
 
@@ -238,7 +238,7 @@ include_once('model/Emogi.php');
                                     dir: 'ltr',
                                     body: bodyMsg,
                                     icon: iconAlert,
-                                    vibrate: [200, 100, 200]
+                                    sound: 'util/soundNotify.mp3'
                                 })
                       }
                     });
