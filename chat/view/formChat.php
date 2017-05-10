@@ -372,8 +372,8 @@ include_once('model/Emogi.php');
             
             <!-- <input type="checkbox" id="notify" name="notify" value="1" style="background-color:#00BFFF;" title="mostrar nova mensagem na barra de tarefas">
             <input type="checkbox" id="notifySound" name="notifySound" value="1" style="background-color:#FF0000;" title="emitir som quando houver uma nova mensagem"> -->
-            <div class="icon window disabled" id="notify">&nbsp;</div>
-            <div class="icon sound disabled" id="notifySound">&nbsp;</div>
+            <div class="icon window disabled" id="notify" title="mostrar nova mensagem na barra de tarefas">&nbsp;</div>
+            <div class="icon sound disabled" id="notifySound" title="emitir som quando houver uma nova mensagem">&nbsp;</div>
 
             <input type="button" id="button" value="Enviar">
             <input type="button" id="sair" value="sair">
